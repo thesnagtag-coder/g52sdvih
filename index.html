@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beneath the Surface - Coastal Corrosion | The Snag Tag</title>
+<meta name="description" content="Coastal corrosion checker for home buyers and owners, houses and apartments: exposure profile, metal, concrete and furniture register, wash and check log, all cited to international guidance. Part of The Snag Tag Beneath the Surface collection.">
+<style>
+:root{
+  --paper:#F7FAFD; --sheet:#FFFFFF; --grid:rgba(45,91,154,.07); --grid2:rgba(45,91,154,.035);
+  --ink:#16243F; --ink2:#44546F; --muted:#6B7A93; --line:#C9D6E8; --line2:#E2EAF4;
+  --blue:#2D5B9A; --blue-soft:#E8F0FA; --cyan:#3730A3; --cyan-soft:#EEF0FF;
+  --high:#B3261E; --high-soft:#FCEBEA; --med:#A15C00; --med-soft:#FFF3E0; --low:#2E7D4F; --low-soft:#E7F5EC;
+  --focus:#3730A3; --shadow:0 1px 2px rgba(22,36,63,.06),0 4px 14px rgba(22,36,63,.05);
+  --mono:ui-monospace,"SFMono-Regular","Cascadia Mono","Roboto Mono",Consolas,monospace;
+  --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+[data-theme="dark"]{
+  --paper:#0F1A2C; --sheet:#15233A; --grid:rgba(140,180,230,.07); --grid2:rgba(140,180,230,.035);
+  --ink:#E6EEF9; --ink2:#B8C6DB; --muted:#8C9BB2; --line:#2F4466; --line2:#243855;
+  --blue:#8CB4E6; --blue-soft:#1C3150; --cyan:#A5B4FC; --cyan-soft:#1E1B4B;
+  --high:#FF8A80; --high-soft:#3A1E22; --med:#FFB74D; --med-soft:#3A2C17; --low:#81C995; --low-soft:#1B3326;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:var(--sans); color:var(--ink); background:var(--paper); font-size:15px; line-height:1.5;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+  linear-gradient(var(--grid2) 1px,transparent 1px),linear-gradient(90deg,var(--grid2) 1px,transparent 1px);
+  background-size:80px 80px,80px 80px,16px 16px,16px 16px;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+/* Title block */
+header.tb{background:var(--sheet);border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:20}
+@media(max-width:700px){header.tb{position:static}.tb-cell{padding:8px 12px}}
+.tb-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.tb-cell{padding:10px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;min-width:0}
+.tb-cell:last-child{border-right:0}
+.tb-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.brand{flex:1 1 280px}
+.brand .coll{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.brand h1{margin:2px 0 0;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.brand h1 span{color:var(--blue);font-weight:600}
+.tb-ctrl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:4px;overflow:hidden}
+.seg button{border:0;background:transparent;padding:6px 10px;font-size:13px;cursor:pointer;font-family:var(--mono)}
+.seg button+button{border-left:1px solid var(--ink)}
+.seg button.on{background:var(--ink);color:var(--sheet)}
+nav.tabs{background:var(--sheet);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin}
+nav.tabs button{border:0;background:none;padding:12px 14px;cursor:pointer;font-size:14px;color:var(--ink2);border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs button .n{font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:6px}
+nav.tabs button.on{color:var(--ink);border-bottom-color:var(--cyan);font-weight:600}
+main{padding:22px 0 60px}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);margin-bottom:18px;position:relative}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line2);flex-wrap:wrap}
+.sheet-h h2{margin:0;font-size:17px}
+.sheet-h .ref{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em}
+.sheet-b{padding:16px}
+.lede{color:var(--ink2);margin:0 0 12px;max-width:760px}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:820px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink2);min-width:0}
+label.f>span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+input[type=text],input[type=number],input[type=date],select,textarea{
+  width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:4px;background:var(--sheet);font-size:14px}
+textarea{min-height:70px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.hint{font-size:12px;color:var(--muted)}
+.conv{font-family:var(--mono);font-size:12px;color:var(--cyan);min-height:16px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ink);background:var(--sheet);padding:8px 14px;border-radius:4px;cursor:pointer;font-size:14px}
+.btn:hover{background:var(--blue-soft)}
+.btn.pri{background:var(--ink);color:var(--sheet)}
+.btn.pri:hover{background:var(--blue);border-color:var(--blue)}
+.btn.sm{padding:5px 10px;font-size:13px}
+.btn.ghost{border-color:var(--line)}
+.btn.danger{border-color:var(--high);color:var(--high)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--sheet);border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer;color:var(--ink2)}
+.chip.on{background:var(--cyan-soft);border-color:var(--cyan);color:var(--ink);font-weight:600}
+.chip.on::before{content:"\2713  ";color:var(--cyan)}
+/* Journey */
+.journey{display:flex;gap:0;overflow-x:auto;padding:4px 0}
+.jstep{flex:1 0 110px;text-align:center;position:relative;padding:8px 4px}
+.jstep .dot{width:34px;height:34px;margin:0 auto 6px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;background:var(--sheet);position:relative;z-index:1}
+.jstep::after{content:"";position:absolute;top:24px;left:50%;right:-50%;border-top:2px dashed var(--line)}
+.jstep:last-child::after{display:none}
+.jstep .t{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.jstep .d{font-size:12px;color:var(--muted)}
+/* Tables */
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px;border-bottom:2px solid var(--ink);font-weight:500}
+.tbl td{padding:10px 8px;border-bottom:1px solid var(--line2);vertical-align:top}
+.tbl td .sub{font-size:12px;color:var(--muted)}
+.tbl-wrap{overflow-x:auto}
+@media(max-width:700px){
+  .tbl.stack thead{display:none}
+  .tbl.stack tr{display:block;border:1px solid var(--line);border-radius:6px;margin-bottom:10px;padding:6px}
+  .tbl.stack td{display:block;border:0;padding:6px}
+  .tbl.stack td[data-l]::before{content:attr(data-l);display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+}
+.risk{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;border:1px solid}
+.risk.High{color:var(--high);background:var(--high-soft);border-color:var(--high)}
+.risk.Medium{color:var(--med);background:var(--med-soft);border-color:var(--med)}
+.risk.Low{color:var(--low);background:var(--low-soft);border-color:var(--low)}
+.stat{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;flex-wrap:wrap}
+.stat button{border:0;background:var(--sheet);padding:5px 9px;font-size:12px;cursor:pointer;font-family:var(--mono);color:var(--ink2)}
+.stat button+button{border-left:1px solid var(--line)}
+.stat button.on[data-v="ok"],.stat button.on[data-v="none"]{background:var(--low-soft);color:var(--low);font-weight:700}
+.stat button.on[data-v="finding"],.stat button.on[data-v="signs"]{background:var(--high-soft);color:var(--high);font-weight:700}
+.stat button.on[data-v="open"],.stat button.on[data-v="unchecked"]{background:var(--blue-soft);color:var(--blue);font-weight:700}
+.stat button.on[data-v="na"],.stat button.on[data-v="noaccess"]{background:var(--med-soft);color:var(--med);font-weight:700}
+.note-in{margin-top:6px;font-size:13px;padding:6px 8px}
+/* Findings */
+.fcard{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px;padding:12px 14px;margin-bottom:10px;background:var(--sheet);display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
+.fcard.High{border-left-color:var(--high)}.fcard.Medium{border-left-color:var(--med)}.fcard.Low{border-left-color:var(--low)}
+.fid{font-family:var(--mono);font-weight:700;letter-spacing:.06em}
+.fcard .meta{font-size:13px;color:var(--ink2)}
+.empty{border:1px dashed var(--line);border-radius:6px;padding:26px;text-align:center;color:var(--muted)}
+/* Editor */
+.step{border-top:1px solid var(--line2);padding:16px 0}
+.step:first-child{border-top:0;padding-top:0}
+.step-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.step-h .num{width:28px;height:28px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;flex:0 0 auto}
+.step-h h3{margin:0;font-size:15px}
+.step-h .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.q{font-size:14px;font-weight:600;margin:10px 0 6px}
+.editor-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}
+@media(max-width:960px){.editor-layout{grid-template-columns:1fr}}
+.side{position:sticky;top:130px;align-self:start}
+@media(max-width:960px){.side{position:static}}
+.prompt-box{border:1px solid var(--cyan);border-radius:6px;background:var(--cyan-soft);padding:12px 14px}
+.prompt-box h4{margin:0 0 6px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.prompt-box ul{margin:4px 0 10px;padding-left:18px;font-size:13px}
+.prompt-box li{margin-bottom:4px}
+.warn{border:1px solid var(--high);background:var(--high-soft);border-radius:6px;padding:10px 12px;font-size:13px;margin-bottom:10px}
+.warn b{color:var(--high)}
+.info{border:1px solid var(--blue);background:var(--blue-soft);border-radius:6px;padding:10px 12px;font-size:13px;margin-bottom:10px}
+.ok{border:1px solid var(--low);background:var(--low-soft);border-radius:6px;padding:10px 12px;font-size:13px;margin-bottom:10px}
+/* Photos */
+.photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:560px){.photos{grid-template-columns:1fr}}
+.ph{border:1px dashed var(--ink2);border-radius:6px;padding:10px;text-align:center;background:var(--paper);min-height:160px;display:flex;flex-direction:column;gap:6px;justify-content:center;align-items:center}
+.ph .pt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.ph .pd{font-size:12px;color:var(--muted)}
+.ph img{max-width:100%;max-height:170px;border-radius:4px;border:1px solid var(--line)}
+.ph input{display:none}
+/* Dew */
+.dew-out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+@media(max-width:560px){.dew-out{grid-template-columns:1fr}}
+.kpi{border:1px solid var(--line);border-radius:6px;padding:10px 12px;background:var(--paper)}
+.kpi .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font-size:20px;font-weight:700;font-family:var(--mono)}
+.kpi .s{font-size:12px;color:var(--ink2)}
+.sum-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media(max-width:700px){.sum-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.legend{display:grid;gap:8px;font-size:13px}
+.legend div{display:flex;gap:10px;align-items:flex-start}
+.refs{font-size:13px;padding-left:18px}
+.refs li{margin-bottom:6px}
+.src{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--muted);margin-top:4px}
+.src a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan)}
+.srclist{list-style:none;padding:0;margin:0;font-size:13px}
+.srclist li{padding:8px 0;border-bottom:1px solid var(--line2);overflow-wrap:anywhere}
+.refs li,.rep-f dd{overflow-wrap:anywhere}
+.srclist .key{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.06em;text-transform:uppercase;display:block}
+.srclist li:target{background:var(--cyan-soft)}
+.steps li{margin-bottom:8px}
+@media(max-width:700px){#reportBody table.tbl{display:block;overflow-x:auto}}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--sheet);padding:10px 16px;border-radius:4px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:99;max-width:90vw}
+.toast.show{opacity:1}
+footer{border-top:2px solid var(--ink);background:var(--sheet);padding:14px 0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.hide{display:none!important}
+.buyer-only,.owner-only{}
+body[data-mode="buyer"] .owner-only{display:none!important}
+body[data-mode="owner"] .buyer-only{display:none!important}
+/* Report */
+.rep-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
+.rep-photos figure{margin:0;font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.rep-photos img{width:100%;border:1px solid var(--line);border-radius:3px}
+.rep-f{border:1px solid var(--line);border-radius:6px;padding:12px;margin-bottom:12px;page-break-inside:avoid}
+.rep-f dl{display:grid;grid-template-columns:170px 1fr;gap:4px 12px;margin:8px 0;font-size:13px}
+.rep-f dt{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.rep-f dd{margin:0}
+@media(max-width:560px){.rep-f dl{grid-template-columns:1fr}}
+@media print{
+  :root,[data-theme="dark"]{--paper:#fff;--sheet:#fff;--ink:#16243F;--ink2:#44546F;--muted:#5B6A82;--line:#B8C6DA;--line2:#DDE5F0;--blue:#2D5B9A;--blue-soft:#EEF3FA;--cyan:#3730A3;--cyan-soft:#EEF0FF;--high:#B3261E;--high-soft:#FCEBEA;--med:#A15C00;--med-soft:#FFF3E0;--low:#2E7D4F;--low-soft:#E7F5EC}
+  body{background:#fff;font-size:12px;color:#16243F}
+  .rep-f{page-break-inside:auto}
+  .rep-f dl,.rep-photos figure{page-break-inside:avoid}
+  .rep-photos img{max-height:220px;object-fit:contain}
+  header.tb,nav.tabs,footer,.no-print,.toast{display:none!important}
+  .view{display:none!important}
+  #view-report{display:block!important}
+  .sheet{box-shadow:none;border-color:#999}
+  main{padding:0}
+}
+</style>
+</head>
+<body data-mode="buyer">
+
+<header class="tb">
+  <div class="wrap tb-row" style="padding:0">
+    <div class="tb-cell brand">
+      <div class="coll">The Snag Tag &middot; Beneath the Surface</div>
+      <h1>Coastal <span>Corrosion</span></h1>
+    </div>
+    <div class="tb-cell">
+      <div class="tb-label">Mode</div>
+      <div class="seg" id="modeSeg" role="group" aria-label="Inspection mode">
+        <button data-v="buyer">Pre-Purchase</button><button data-v="owner">Maintenance</button>
+      </div>
+    </div>
+    <div class="tb-cell">
+      <div class="tb-label">Display</div>
+      <div class="seg" id="themeSeg" role="group" aria-label="Theme">
+        <button data-v="light">Light</button><button data-v="dark">Dark</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap" id="tabs">
+    <button data-t="start"><span class="n">00</span>Start</button>
+    <button data-t="sweep"><span class="n">01</span>Coastal Sweep</button>
+    <button data-t="checks"><span class="n">02</span>Master Checks</button>
+    <button data-t="findings"><span class="n">03</span>Findings</button>
+    <button data-t="log"><span class="n">04</span>Metal Register &amp; Wash Log</button>
+    <button data-t="report"><span class="n">05</span>Report</button>
+    <button data-t="guide"><span class="n">06</span>Guide &amp; Standards</button>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<!-- START -->
+<section class="view" id="view-start">
+  <div class="sheet">
+    <div class="sheet-h"><h2>Salt air works slowly. Checking keeps you ahead of it.</h2><span class="ref">SHEET 00 &middot; START</span></div>
+    <div class="sheet-b">
+      <p class="lede">Salt-loaded spray speeds up rusting (Designing Buildings), and it can reach well inland. This check records where your home is exposed, finds the sheltered spots rain never washes, grades every metal and concrete item you can see, including furniture inside and out, and keeps a washing and inspection schedule. Distance from the sea is <b>context, not cause</b>: you record what you see, you never diagnose.</p>
+      <div class="journey" aria-label="Inspection journey">
+        <div class="jstep"><div class="dot">1</div><div class="t">Context</div><div class="d">Distance and sea-facing sides</div></div>
+        <div class="jstep"><div class="dot">2</div><div class="t">Sheltered</div><div class="d">Spots rain never washes</div></div>
+        <div class="jstep"><div class="dot">3</div><div class="t">Metals</div><div class="d">Fixings, railings, roofing</div></div>
+        <div class="jstep"><div class="dot">4</div><div class="t">Concrete</div><div class="d">Rust stains, cracks, spalling</div></div>
+        <div class="jstep"><div class="dot">5</div><div class="t">Services &amp; furniture</div><div class="d">AC, electrical, gas; furniture in and out</div></div>
+        <div class="jstep"><div class="dot">6</div><div class="t">Record</div><div class="d">Grade, photos, wash schedule</div></div>
+        <div class="jstep"><div class="dot">7</div><div class="t">Escalate</div><div class="d">Engineer or specialist</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-h"><h2>Property details</h2><span class="ref">TITLE BLOCK</span></div>
+    <div class="sheet-b">
+      <div class="grid g3">
+        <label class="f"><span>Property name / reference</span><input type="text" data-p="name" placeholder="e.g. 12 Seaview Road"></label>
+        <label class="f"><span>Address</span><input type="text" data-p="address"></label>
+        <label class="f"><span>Inspection date</span><input type="date" data-p="date"></label>
+        <label class="f"><span>Inspected by</span><input type="text" data-p="inspector"></label>
+        <label class="f"><span>Property type</span><select data-p="ptype"><option value="">Select</option><option>House</option><option>Townhouse</option><option>Apartment / condo</option></select></label>
+        <label class="f"><span>Distance to the sea (from the high-water mark)</span><select data-p="dist"><option value="">Select</option><option>Under 100 m (330 ft)</option><option>100-500 m (330-1,640 ft)</option><option>500 m-1 km (1,640 ft-0.6 mi)</option><option>1-5 km (0.6-3.1 mi)</option><option>Over 5 km (3.1 mi)</option><option>Not sure</option></select></label>
+        <label class="f"><span>Faces the sea or the sea wind?</span><select data-p="faces"><option value="">Select</option><option>Yes</option><option>Partly</option><option>No</option><option>Not sure</option></select></label>
+        <label class="f"><span>Building age (years)</span><input type="text" data-p="age" placeholder="Record, don't guess"></label>
+        <label class="f"><span>Building manager / owners' body (apartments)</span><input type="text" data-p="manager" placeholder="e.g. body corporate, HOA, strata"></label>
+        <label class="f buyer-only"><span>Property occupied?</span>
+          <select data-p="occupied"><option value="">Select</option><option>Occupied</option><option>Vacant</option><option>Unknown</option></select></label>
+      </div>
+      <label class="f" style="margin-top:12px"><span>General notes</span><textarea data-p="notes"></textarea></label>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-h"><h2>Before you start - safety first</h2><span class="ref">HSE</span></div>
+    <div class="sheet-b">
+      <div class="warn"><b>Railings and balconies:</b> never lean on, climb or hang anything from a railing or balcony that shows rust at its fixings, loose parts, cracked or flaking concrete. Keep children off it and report it. <span class="src" style="display:inline">(<a href="#" data-src="PP">Professional practice</a>)</span></div>
+      <div class="warn"><b>Falling concrete:</b> if pieces have fallen from a balcony, soffit or facade, keep people away from the area below and report it straight away. <span class="src" style="display:inline">(<a href="#" data-src="DB2">Designing Buildings</a>, <a href="#" data-src="PP">Professional practice</a>)</span></div>
+      <ul style="margin:0;padding-left:18px;font-size:14px">
+        <li>Look from the ground or a safe balcony. Stay off roofs and ladders: treat all roofs as fragile. <span class="src" style="display:inline">(<a href="#" data-src="HSE1">UK HSE Roof work</a>)</span></li>
+        <li>Look only at corroded electrical fittings, meters, gas pipes and air-conditioner parts. Never touch, open or scrape them. <span class="src" style="display:inline">(<a href="#" data-src="PP">Professional practice</a>)</span></li>
+        <li>Don't scrape, hammer or pick at rust or concrete to "see how bad it is". <span class="src" style="display:inline">(<a href="#" data-src="PP">Professional practice</a>)</span></li>
+      </ul>
+      <div class="row" style="margin-top:14px"><button class="btn pri" data-go="sweep">Start the Coastal Sweep &rarr;</button><button class="btn" id="newFindingStart">Log something now</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- SWEEP -->
+<section class="view hide" id="view-sweep">
+  <div class="sheet">
+    <div class="sheet-h"><h2>Coastal Sweep</h2><span class="ref">SHEET 01 &middot; <span id="sweepCount"></span></span></div>
+    <div class="sheet-b">
+      <p class="lede">Walk the outside first, sea-facing side first, then the sheltered spots. For each area, also ask: <b>is this spot ever washed by rain, or is it sheltered?</b> Sheltered areas can build up salt that rain never rinses away.</p>
+      <div class="tbl-wrap"><table class="tbl stack" id="sweepTbl">
+        <thead><tr><th style="width:34%">Area</th><th>Status</th><th style="width:120px">Sheltered or hidden?</th><th style="width:130px"></th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKS -->
+<section class="view hide" id="view-checks">
+  <div class="sheet">
+    <div class="sheet-h"><h2>Master Coastal Corrosion Checks</h2><span class="ref">SHEET 02 &middot; <span id="checkCount"></span></span></div>
+    <div class="sheet-b">
+      <p class="lede">Visual checks and maintenance habits. The <b>priority</b> shows how soon a structural engineer, electrician, gas engineer or specialist should look if the sign is found. It is not a diagnosis.</p>
+      <div class="row" style="margin-bottom:10px">
+        <span class="hint">Filter:</span>
+        <div class="seg" id="checkFilter"><button data-v="all" class="on">All</button><button data-v="High">High</button><button data-v="Medium">Medium</button><button data-v="open">Open</button><button data-v="finding">Findings</button></div>
+      </div>
+      <div class="tbl-wrap"><table class="tbl stack" id="checkTbl">
+        <thead><tr><th style="width:30%">Check</th><th style="width:26%">What to record</th><th>Priority</th><th>Status</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section class="view hide" id="view-findings">
+  <div id="findList">
+    <div class="sheet">
+      <div class="sheet-h"><h2>Findings Register</h2><div class="row"><span class="ref" id="findCount"></span><button class="btn pri sm" id="addFinding">+ New finding</button></div></div>
+      <div class="sheet-b" id="findItems"></div>
+    </div>
+  </div>
+  <div id="findEdit" class="hide">
+    <div class="row no-print" style="margin-bottom:10px"><button class="btn ghost sm" id="backToList">&larr; All findings</button></div>
+    <div class="editor-layout">
+      <div class="sheet"><div class="sheet-h"><h2 id="edTitle">SALT-001</h2><span class="ref">FINDING RECORD</span></div>
+        <div class="sheet-b" id="edBody"></div>
+      </div>
+      <aside class="side"><div class="prompt-box" id="promptBox"></div></aside>
+    </div>
+  </div>
+</section>
+
+<!-- LOG -->
+<section class="view hide" id="view-log">
+  <div class="sheet">
+    <div class="sheet-h"><h2>Metal &amp; Concrete Register</h2><span class="ref">SHEET 04 &middot; <span id="mrCount"></span></span></div>
+    <div class="sheet-b">
+      <p class="lede">List every metal or reinforced concrete item you want to track, outside and inside: railings, brackets, fixings, roofing, gates, frames and metal furniture. Grade what you see today, then re-grade at each check so you can see change. FEMA: inspecting fasteners and metal connectors should be a regular maintenance task for coastal homes.</p>
+      <div class="grid g3">
+        <label class="f"><span>Item</span><input type="text" id="mrItem" placeholder="e.g. Balcony railing base plates, patio chairs"></label>
+        <label class="f"><span>Location</span><input type="text" id="mrLoc" placeholder="e.g. Level 2, sea side"></label>
+        <label class="f"><span>Material</span><select id="mrMat"><option>Stainless steel</option><option>Galvanised steel</option><option>Painted steel</option><option>Aluminium</option><option>Powder-coated aluminium</option><option>Copper / brass</option><option>Reinforced concrete</option><option>Not sure</option></select></label>
+        <label class="f"><span>Exposure</span><select id="mrExp"><option>Open, rain-washed</option><option>Sheltered, not rain-washed</option><option>Enclosed / indoor</option></select></label>
+        <label class="f"><span>Condition today</span><select id="mrGrade"><option value="0">0 - No visible corrosion</option><option value="1">1 - Light discolouration or staining</option><option value="2">2 - Rust spots, streaks or paint bubbling</option><option value="3">3 - Flaking rust, pitting or cracking</option><option value="4">4 - Loose, holes, spalling or exposed steel</option></select></label>
+        <label class="f"><span>Touching a different metal?</span><select id="mrMix"><option value="">Not sure</option><option>No</option><option>Yes</option></select></label>
+        <label class="f"><span>Date graded</span><input type="date" id="mrDate"></label>
+      </div>
+      <div class="row" style="margin-top:10px"><button class="btn pri" id="mrSave">Add to register</button></div>
+      <div class="tbl-wrap" style="margin-top:14px"><table class="tbl stack" id="mrTbl"><thead><tr><th>Item</th><th>Material</th><th>Exposure</th><th>Grade</th><th>Flags</th><th></th></tr></thead><tbody></tbody></table></div>
+      <p class="hint">Condition grades 0-4 are a recording scale (professional practice), not a structural rating. Only an engineer can judge strength.</p>
+    </div>
+  </div>
+  <div class="sheet">
+    <div class="sheet-h"><h2>Wash &amp; Check Log</h2><span class="ref" id="wlCount"></span></div>
+    <div class="sheet-b">
+      <p class="lede">COLORBOND (Australia): hose down areas not regularly washed by rain at least every six months, more often in coastal areas. BRANZ (New Zealand): unwashed and high-risk areas of metal cladding every 3 months in the most severe environments, every 6 or 12 months elsewhere. Follow the product maker's instructions where you have them.</p>
+      <div class="grid g4">
+        <label class="f"><span>Area or item</span><input type="text" id="wlArea" placeholder="e.g. Eaves and soffits, sea side"></label>
+        <label class="f"><span>Task</span><select id="wlTask"><option>Hosed / washed</option><option>Inspected</option><option>Repainted / recoated</option><option>Repaired / replaced</option></select></label>
+        <label class="f"><span>Date done</span><input type="date" id="wlDate"></label>
+        <label class="f"><span>Repeat every</span><select id="wlInt"><option value="3">3 months</option><option value="6" selected>6 months</option><option value="12">12 months</option></select></label>
+      </div>
+      <div class="row" style="margin-top:10px"><button class="btn pri" id="wlSave">Add to log</button></div>
+      <div class="tbl-wrap" style="margin-top:14px"><table class="tbl stack" id="wlTbl"><thead><tr><th>Area</th><th>Task</th><th>Done</th><th>Next due</th><th>Status</th><th></th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORT -->
+<section class="view hide" id="view-report">
+  <div class="row no-print" style="margin-bottom:12px">
+    <button class="btn pri" id="printBtn">Print / Save as PDF</button>
+    <button class="btn" id="exportBtn">Download backup (.json)</button>
+    <label class="btn">Restore backup<input type="file" id="importFile" accept=".json,application/json" style="display:none"></label>
+    <button class="btn danger" id="resetBtn">Clear all data</button>
+  </div>
+  <div class="sheet"><div class="sheet-b" id="reportBody"></div></div>
+</section>
+
+<!-- GUIDE -->
+<section class="view hide" id="view-guide">
+  <div class="sheet">
+    <div class="sheet-h"><h2>What you can do now</h2><span class="ref">SAFE STEPS &middot; ALL CITED</span></div>
+    <div class="sheet-b">
+      <p class="lede">Safe maintenance steps from public guidance. None of them involve climbing, structural repair, electrical or gas work. In a property you do not own, share these with the owner, landlord or building manager.</p>
+      <ul class="steps" id="stepsList" style="padding-left:18px;font-size:14px"></ul>
+    </div>
+  </div>
+  <div class="sheet">
+    <div class="sheet-h"><h2>How priorities are defined</h2><span class="ref">SHEET 06 &middot; KEY</span></div>
+    <div class="sheet-b legend">
+      <div><span class="risk High">High</span><span>Spalling or falling concrete, exposed or rusting reinforcement, a railing or balcony with loose parts, pitting or flaking rust at its fixings, heavily corroded structural brackets or connectors, or corrosion on outdoor electrical or gas equipment.</span></div>
+      <div><span class="risk Medium">Medium</span><span>Rust spots or streaks, paint bubbling over rust, different metals touching, sheltered areas building up salt, washing overdue, or habits to change.</span></div>
+      <div><span class="risk Low">Low</span><span>Recorded for completeness, with no issue found.</span></div>
+      <p class="hint" style="margin:6px 0 0">Priority organises your findings. It is not a structural rating. Priority definitions and the 0-4 condition grades: professional practice.</p>
+    </div>
+  </div>
+  <div class="sheet">
+    <div class="sheet-h"><h2>What this tool will not do</h2><span class="ref">LIMITS</span></div>
+    <div class="sheet-b">
+      <ul style="margin:0;padding-left:18px">
+        <li>It does not measure metal loss, chloride levels in concrete or structural strength. Only engineers and specialists with the right tests can do that.</li>
+        <li>It does not say that salt caused a defect. Distance from the sea is recorded as context, not cause.</li>
+        <li>It does not replace a structural inspection, including any inspection required by law for apartment buildings in your area.</li>
+        <li>It never asks you to climb, scrape, open electrical or gas equipment, or test a railing by loading it.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sheet">
+    <div class="sheet-h"><h2>Standards &amp; Measurements</h2><span class="ref">REFERENCES</span></div>
+    <div class="sheet-b">
+      <h3 style="font-size:14px;margin:0 0 6px">Guidance used in this tool</h3>
+      <ul class="refs">
+        <li><b>International corrosivity categories (ISO 9223):</b> C4 includes a substantial chloride effect, for example less than 1 km (0.6 mi) from the ocean or within 100 m (330 ft) of sheltered coastal areas; C5 includes areas within a few hundred metres of the ocean and certain exposed areas along the coastline; CX includes the splash zone. <span class="src" style="display:inline">(AGA ISO categories)</span></li>
+        <li><b>Why coasts:</b> seawater and salt-loaded spray can accelerate rusting, and rust stays permeable, so the steel beneath keeps corroding. <span class="src" style="display:inline">(Designing Buildings Rust)</span></li>
+        <li><b>Sheltered areas:</b> parts of buildings exposed to rain may corrode more slowly than sheltered areas, because rain washes salt away. Owners of nearshore coastal buildings should inspect fasteners and metal connectors as regular maintenance. <span class="src" style="display:inline">(FEMA TB 8)</span></li>
+        <li><b>Washing:</b> hose down areas not regularly washed by rain at least every six months, more often in coastal areas, with mild soap and a thorough rinse (COLORBOND). Unwashed and high-risk areas of metal wall cladding every 3 months in the most severe environments, every 6 or 12 months in others (BRANZ). Wash stainless steel when a window would need washing (ASSDA). <span class="src" style="display:inline">(COLORBOND, BRANZ, ASSDA)</span></li>
+        <li><b>Stainless steel:</b> tea staining is cosmetic and does not affect structural integrity. It is most common within about 5 km (3.1 mi) of the surf; grade 316 or equivalent is the minimum there. <span class="src" style="display:inline">(ASSDA)</span></li>
+        <li><b>Different metals:</b> when two different metals touch and share moisture such as sea spray, one corrodes faster. Separate them with inert spacers or a durable paint system. <span class="src" style="display:inline">(AGA Dissimilar metals)</span></li>
+        <li><b>Fixings:</b> stainless steel and thick hot-dip galvanized (G185 or higher) connectors and fasteners improve corrosion protection in coastal areas. <span class="src" style="display:inline">(FEMA TB 8)</span></li>
+        <li><b>Concrete:</b> water, often with salt, entering concrete can cause spalling; act quickly, as the risk of damage rises the longer repair is delayed. <span class="src" style="display:inline">(Designing Buildings Spalling)</span></li>
+        <li><b>Furniture and fittings (outdoor):</b> powder-coated surfaces in coastal (very high) environments: clean every 3 months, compared with every 12 months in normal urban areas; mild detergent, soft brush, rinse with clean water; no aggressive solvents or citrus cleaners. Stainless steel: wash when a window would need washing. <span class="src" style="display:inline">(Dulux Powder Coatings, ASSDA)</span></li>
+        <li><b>Furniture and fittings (indoor):</b> dry environments are ideal for metals; corrosion accelerates above 65% RH. Damp causes rapid corrosion of metals above 75% RH, where salt deliquesces into a very corrosive solution. US EPA: keep indoor humidity below 60%, ideally 30-50%. <span class="src" style="display:inline">(CCI Metal objects, CCI Humidity, EPA Mold &amp; Moisture)</span></li>
+        <li><b>Air conditioners:</b> clean evaporator and condenser coils; have a contractor do an annual check-up. <span class="src" style="display:inline">(ENERGY STAR)</span></li>
+        <li><b>Units:</b> 1 m = 3.28 ft; 1 km = 0.62 mi; 1 cm = 0.39 in. Metric first, imperial in brackets.</li>
+      </ul>
+      <div class="info" style="margin-top:10px"><b>Country-specific:</b> New Zealand (BRANZ, NZS 3604): the high-risk zone is within 500 m (1,640 ft) of the sea or 100 m (330 ft) of tidal estuaries and sheltered inlets, and salt can travel more than 20 km (12 mi) inland. Southern Africa (HDGASA): corrosion of galvanized steel can be high generally within 1 km (0.6 mi) of the high-water mark. Australia (COLORBOND): product choice changes by distance from breaking surf, measured from the high-water mark. United States, Florida: condominium and cooperative buildings of three or more habitable storeys need a milestone structural inspection at 30 years (25 years where a local authority requires it, for example near salt water). Check your own national building rules.</div>
+      <p class="hint">Items marked <b>Professional practice</b> reflect general inspection and HSE practice. No single public standard covers them, so no standard is claimed.</p>
+      <h3 style="font-size:14px;margin:14px 0 6px">Source list</h3>
+      <ul class="srclist" id="srcList"></ul>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer><div class="wrap"><span>THE SNAG TAG &middot; BENEATH THE SURFACE COLLECTION &middot; SPECIALIST CHECK 09: COASTAL CORROSION</span><span id="saveState">SAVED ON THIS DEVICE</span></div></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+var KEY='snagtag_bts_salt_v1';
+
+var SRC={
+ ISO:{n:'American Galvanizers Association - HDG corrosion rates for ISO 9223 categories C1-C5/CX',d:'current web guidance',u:'https://galvanizeit.org/knowledgebase/article/hdg-corrosion-rates-for-iso-categories-c1-c5-x'},
+ AGA:{n:'American Galvanizers Association - Dissimilar metal corrosion with zinc',d:'current web guidance',u:'https://galvanizeit.org/design-and-fabrication/design-considerations/dissimilar-metals-in-contact'},
+ FEMA:{n:'US FEMA - Corrosion Protection for Metal Connectors and Fasteners in Coastal Areas (Technical Bulletin 8)',d:'June 2019',u:'https://www.fema.gov/sites/default/files/2020-07/tb8-corrosion_protection_metal_connectors_coastal_areas.pdf'},
+ BRZ1:{n:'BRANZ (New Zealand) - Metal corrosion in New Zealand buildings #1 (fact sheet)',d:'April 2021',u:'https://www.branz.co.nz/documents/1207/FS_Metal_Corrosion_1_v3.pdf'},
+ BRZ2:{n:'BRANZ (New Zealand) - What\'s corroding Aotearoa\'s houses?',d:'updated 1 Aug 2024',u:'https://www.branz.co.nz/design-build/articles/whats-corroding-aotearoas-houses'},
+ HDG:{n:'Hot Dip Galvanizers Association Southern Africa - Atmospheric corrosion resistance of hot dip galvanizing',d:'current web guidance',u:'https://www.hdgasa.org.za/technical/atmospheric-corrosion-resistance-of-hot-dip-galvanizing/'},
+ ASSDA:{n:'Australian Stainless Steel Development Association - FAQ 6: Preventing coastal corrosion (tea staining)',d:'current web guidance',u:'https://www.assda.asn.au/publications/technical-faqs/preventing-coastal-corrosion-tea-staining'},
+ CB:{n:'COLORBOND steel (BlueScope, Australia) - FAQ: coastal environments and washing',d:'current web guidance',u:'https://colorbond.com/faq'},
+ DB1:{n:'Designing Buildings - Rust',d:'current web guidance',u:'https://www.designingbuildings.co.uk/wiki/Rust'},
+ DB2:{n:'Designing Buildings - Spalling concrete',d:'current web guidance',u:'https://www.designingbuildings.co.uk/wiki/Spalling_concrete'},
+ ESTAR:{n:'ENERGY STAR (US) - Heating and cooling maintenance checklist',d:'current web guidance',u:'https://www.energystar.gov/saveathome/heating-cooling/maintenance-checklist'},
+ FL:{n:'Florida Statutes s.553.899 - Mandatory structural inspections for condominium and cooperative buildings',d:'2025 Florida Statutes',u:'https://www.flsenate.gov/Laws/Statutes/2025/553.899'},
+ CCI1:{n:'Canadian Conservation Institute (Government of Canada) - Caring for metal objects',d:'modified 11 Feb 2025',u:'https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html'},
+ CCI2:{n:'Canadian Conservation Institute (Government of Canada) - Agent of deterioration: incorrect relative humidity',d:'5 Feb 2021',u:'https://www.canada.ca/en/conservation-institute/services/agents-deterioration/humidity.html'},
+ DPC:{n:'Dulux Powder Coatings (Australia) - Care and maintenance of powder coated surfaces',d:'August 2021',u:'https://www.vividpowdercoating.com.au/wp-content/uploads/2021/09/Dulux_Powder_Technical_Advice_Brochure_Care-and-Maintenance_AUS_WEB_08_21.pdf'},
+ EPA1:{n:'US EPA - A Brief Guide to Mold, Moisture and Your Home',d:'updated 18 Feb 2026',u:'https://www.epa.gov/mold/brief-guide-mold-moisture-and-your-home'},
+ HSE1:{n:'UK HSE - Roof work',d:'current web guidance',u:'https://www.hse.gov.uk/construction/safetytopics/roofwork.htm'},
+ PP:{n:'Professional practice',d:'general inspection and HSE practice, no single public standard',u:''}
+};
+function srcShort(k){return {ISO:'AGA ISO categories',AGA:'AGA Dissimilar metals',FEMA:'FEMA TB 8',BRZ1:'BRANZ Fact sheet',BRZ2:'BRANZ',HDG:'HDGASA',ASSDA:'ASSDA',CB:'COLORBOND',DB1:'Designing Buildings Rust',DB2:'Designing Buildings Spalling',ESTAR:'ENERGY STAR',FL:'Florida s.553.899',CCI1:'CCI Metal objects',CCI2:'CCI Humidity',DPC:'Dulux Powder Coatings',EPA1:'EPA Mold & Moisture',HSE1:'UK HSE Roof work',PP:'Professional practice'}[k];}
+function srcTags(keys){return '<div class="src">Source: '+(keys||['PP']).map(function(k){return '<a href="#src-'+k+'" data-src="'+k+'" title="'+esc(SRC[k].n)+'">'+srcShort(k)+'</a>';}).join(' &middot; ')+'</div>';}
+
+var SWEEP=[
+ {id:'expo',g:'Exposure',a:'Sea-facing walls, windows and doors',h:'Salt crust, rust streaks, staining, frames and hardware',s:['ISO','BRZ1','PP']},
+ {id:'shelter',g:'Exposure',a:'Sheltered spots rain never washes',h:'Eaves, soffits, porches, under carports, decks and raised floors',s:['FEMA','BRZ1','CB']},
+ {id:'roof',g:'Metals',a:'Metal roofing, flashings and gutters (from the ground)',h:'Rust at laps, edges and fixings; staining below gutters',s:['CB','HSE1']},
+ {id:'fix',g:'Metals',a:'Visible fixings, bolts, brackets and connectors',h:'Rust streaks from fixings, corroded heads, loose brackets',s:['FEMA','DB1','PP']},
+ {id:'rail',g:'Metals',a:'Balcony railings and balustrades (look only)',h:'Rust at base plates and joints, loose posts, cracked concrete around fixings',s:['PP','ASSDA']},
+ {id:'ss',g:'Metals',a:'Stainless steel items',h:'Brown tea staining, pitting; grade if known (304 or 316)',s:['ASSDA']},
+ {id:'galv',g:'Metals',a:'Galvanised steel (gates, posts, carports, frames)',h:'Red rust showing through the grey zinc coating',s:['HDG','ISO']},
+ {id:'mixed',g:'Metals',a:'Different metals touching',h:'For example steel screws in aluminium, copper next to galvanised steel',s:['AGA']},
+ {id:'frames',g:'Metals',a:'Window and door frames, hinges, locks and sliding tracks',h:'White powdery deposits, corrosion, sticking parts',s:['PP']},
+ {id:'conc',g:'Concrete',a:'Concrete balconies, slabs and soffits',h:'Rust staining, cracks along steel, flaking or spalling, exposed steel',s:['DB2','DB1']},
+ {id:'wall',g:'Concrete',a:'Render and masonry near embedded steel',h:'Rust stains or cracks near lintels, bolts and fixings',s:['DB1','PP']},
+ {id:'ac',g:'Services',a:'Air-conditioner outdoor units',h:'Corroded casing, fins or brackets; last service date',s:['ESTAR','PP']},
+ {id:'elec',g:'Services',a:'Outdoor electrical fittings, lights and meter boxes (look only)',h:'Rust, green or white deposits, cracked covers',s:['PP']},
+ {id:'gasm',g:'Services',a:'Gas meter, pipes and regulator outside (look only)',h:'Rust, flaking or pitting on pipework and brackets',s:['PP']},
+ {id:'furnout',g:'Furniture',a:'Outdoor furniture and fittings',h:'Frames, screws, hinges and feet; rust, chalky or blistered coating, different metals touching',s:['DPC','AGA','ASSDA']},
+ {id:'furnin',g:'Furniture',a:'Indoor metal furniture and fittings',h:'Rust spots, pitting or white deposits; how humid the room gets; salt near open windows',s:['CCI1','CCI2','EPA1']},
+ {id:'shared',g:'Shared building',a:'Common balconies, walkways, stairs and car park soffits',h:'Rust staining, spalling, exposed steel, propping or barriers',s:['DB2','PP']},
+ {id:'records',g:'Shared building',a:'Building inspection and maintenance records',h:'Last structural or balcony inspection; planned concrete repairs',s:['FL','PP']}
+];
+
+var CHECKS=[
+ {id:'spall',t:'Spalling or falling concrete',r:'Flaking or broken concrete on balconies, soffits, columns or walls.',m:'Where, size, photo',p:'High',s:['DB2']},
+ {id:'rebar',t:'Exposed or rusting reinforcement',r:'Steel bars visible in concrete, or rust stains along cracks.',m:'Where, length, photo',p:'High',s:['DB2','DB1']},
+ {id:'railing',t:'Balcony railings sound (look only)',r:'No rust at base plates or joints, no loose posts, no cracked concrete around fixings.',m:'Which railing, what you see',p:'High',s:['PP']},
+ {id:'balcony',t:'Balcony slabs and undersides',r:'Look underneath from below: rust staining, cracks, sagging or dripping.',m:'Which balcony, photo',p:'High',s:['DB2','PP']},
+ {id:'conn',t:'Structural brackets and connectors',r:'Heavy rust, flaking, holes or loose brackets on decks, stairs, carports.',m:'Item, grade, photo',p:'High',s:['FEMA','DB1']},
+ {id:'elec',t:'Outdoor electrical equipment',r:'Look only: rust or deposits on fittings, lights, meter boxes, AC isolators.',m:'Item, location',p:'High',s:['PP']},
+ {id:'gas',t:'Outdoor gas meter and pipework',r:'Look only: rust, flaking or pitting on pipes, brackets and regulator.',m:'Where, photo',p:'High',s:['PP']},
+ {id:'dist',t:'Exposure context recorded',r:'Distance to the sea, sea-facing sides, prevailing wind.',m:'Distance band, sides',p:'Medium',s:['ISO','BRZ2','HDG']},
+ {id:'shelter',t:'Sheltered, unwashed areas identified',r:'Eaves, soffits, porches, under carports and raised floors.',m:'List of areas',p:'Medium',s:['FEMA','BRZ1']},
+ {id:'wash',t:'Washing schedule in place',r:'Unwashed metal hosed down on a schedule (Wash & Check Log).',m:'Last wash date, interval',p:'Medium',s:['CB','BRZ1','ASSDA']},
+ {id:'roof',t:'Metal roof and gutters (from the ground)',r:'Rust at laps, edges, fixings; staining below gutters.',m:'Where, photo',p:'Medium',s:['CB','HSE1']},
+ {id:'fix',t:'Fixings and fasteners',r:'Rust streaks running from screws and bolts; corroded heads.',m:'Where, how many',p:'Medium',s:['FEMA','PP']},
+ {id:'mixed',t:'Different metals touching',r:'Joints where two different metals meet and get wet.',m:'Which metals, where',p:'Medium',s:['AGA']},
+ {id:'ss',t:'Stainless steel staining',r:'Tea staining is cosmetic; note it and add to washing.',m:'Item, grade if known',p:'Medium',s:['ASSDA']},
+ {id:'galv',t:'Galvanised coating condition',r:'Red rust showing through the zinc coating.',m:'Item, how much',p:'Medium',s:['HDG','ISO']},
+ {id:'paint',t:'Paint on steel',r:'Bubbling, cracking or peeling paint with rust underneath.',m:'Item, area',p:'Medium',s:['DB1','PP']},
+ {id:'frames',t:'Window and door hardware',r:'Corroded hinges, locks, tracks; sliders sticking.',m:'Which, what happens',p:'Medium',s:['PP']},
+ {id:'ac',t:'Air-conditioner outdoor units',r:'Corroded fins or casing; annual contractor check-up done.',m:'Unit, last service',p:'Medium',s:['ESTAR']},
+ {id:'furnwash',t:'Outdoor furniture cleaned on a schedule',r:'Powder-coated and stainless furniture washed with mild detergent and rinsed; no harsh solvents.',m:'Items, last clean, interval',p:'Medium',s:['DPC','ASSDA']},
+ {id:'furnrh',t:'Indoor humidity near metal furniture',r:'Rooms with metal furniture, fittings or appliances kept below 60% RH where possible.',m:'Room, RH readings',p:'Medium',s:['CCI1','CCI2','EPA1']},
+ {id:'insp',t:'Apartments: latest structural inspection',r:'Ask for the most recent structural or balcony inspection report.',m:'Date, findings, planned repairs',p:'Medium',s:['FL','PP']},
+ {id:'maint',t:'Maintenance history',r:'Repainting, washing, repairs and replacements, with dates.',m:'What, when, by whom',p:'Medium',s:['FEMA','PP']}
+];
+
+var APPS=['Balcony railing / balustrade','Balcony slab / soffit','Concrete wall / column','Metal roof / flashing','Gutter / downpipe','Fixings / brackets / connectors','Stainless steel item','Galvanised steel item','Painted steel item','Aluminium frame / door','Air-conditioner unit','Outdoor electrical fitting','Gas meter / pipe','Shared building area','Outdoor furniture','Indoor metal furniture / fittings','Other'];
+var SIGNS=['Light discolouration / tea staining','Rust spots or streaks','Paint bubbling over rust','Chalky or blistered coating','Flaking or layered rust','Pitting or holes','Loose or moving fixing','Rust staining on concrete','Cracking along steel','Spalling or falling concrete','Exposed reinforcement','Different metals touching','Salt crust / white deposits','Sheltered, never rain-washed','Sliding or hinged parts sticking','No issue seen'];
+var QUESTIONS=[
+ 'How far is the property from the sea (high-water mark), and which sides take the sea wind?',
+ 'What corrosion repairs, repainting or replacements have been done, and when?',
+ 'Are there records of washing and maintenance for metal roofs, railings and air-conditioner units?',
+ 'Were any railings, fixings or brackets replaced, and with what material (for example grade 316 stainless steel)?',
+ 'Apartments: when was the last structural or balcony inspection, and can I see the report?',
+ 'Apartments: are any concrete, balcony or facade repairs planned, and how will they be paid for?',
+ 'Are there local rules for coastal buildings, such as periodic structural inspections?'
+];
+
+var STEPS={
+ wash:{t:'Hose down metal in areas not regularly washed by rain at least every six months, more often in coastal areas, using mild soap, then rinse thoroughly.',s:['CB']},
+ washSevere:{t:'In the most severe coastal environments, wash unwashed and high-risk areas of metal cladding every 3 months; elsewhere every 6 or 12 months.',s:['BRZ1']},
+ ssWash:{t:'Wash stainless steel whenever the windows need washing.',s:['ASSDA']},
+ ss316:{t:'When replacing stainless steel within about 5 km (3.1 mi) of the surf, choose grade 316 or equivalent as a minimum.',s:['ASSDA']},
+ fasteners:{t:'When fixings or connectors are replaced near the coast, stainless steel or thick hot-dip galvanized (G185 or higher) improve corrosion protection.',s:['FEMA']},
+ isolate:{t:'Keep different metals apart with inert spacers (for example neoprene, rubber or nylon) or a durable paint system. Ask a contractor.',s:['AGA']},
+ inspect:{t:'Inspect fasteners and metal connectors as a regular maintenance task.',s:['FEMA']},
+ coat:{t:'Keep protective coatings in good repair: galvanizing and paint are among the main ways steel is protected from rust.',s:['DB1']},
+ concrete:{t:'Report spalling concrete quickly: the risk of damage rises the longer repair is delayed.',s:['DB2']},
+ keepAway:{t:'Keep people away from below damaged balconies, soffits or facades, and off corroded railings, until a structural engineer has assessed them.',s:['PP']},
+ ac:{t:'Have a contractor do an annual air-conditioner check-up, including cleaning the coils.',s:['ESTAR']},
+ furnWash:{t:'Clean powder-coated surfaces, including outdoor furniture frames, every 3 months in coastal (very high) environments: wet sponge, soft brush with mild detergent in warm water, then rinse with clean water. Avoid solvents, citrus cleaners and abrasives.',s:['DPC']},
+ indoorRH:{t:'Keep rooms with metal furniture and fittings dry: corrosion of metals speeds up above about 65% RH, and salt forms a very corrosive solution above 75% RH. Aim for below 60%, ideally 30-50%.',s:['CCI1','CCI2','EPA1']},
+ report:{t:'Apartments: report shared-area defects in writing to the building manager or owners\' body, with photos and dates.',s:['PP']}
+};
+var STRUCT=['Balcony railing / balustrade','Balcony slab / soffit','Concrete wall / column','Fixings / brackets / connectors','Shared building area'];
+function stepsFor(f){
+  var has=function(a,x){return a.indexOf(x)>-1;},k=[];
+  var any=function(list,arr){return list.some(function(x){return has(arr,x);});};
+  var rusty=any(['Rust spots or streaks','Paint bubbling over rust','Flaking or layered rust','Pitting or holes','Salt crust / white deposits'],f.signs);
+  if(has(f.signs,'Sheltered, never rain-washed')||has(f.signs,'Salt crust / white deposits'))k.push('wash','washSevere');
+  if(has(f.apps,'Stainless steel item')||has(f.signs,'Light discolouration / tea staining'))k.push('ssWash','ss316');
+  if(has(f.apps,'Fixings / brackets / connectors')&&(rusty||has(f.signs,'Loose or moving fixing')))k.push('inspect','fasteners');
+  if(has(f.signs,'Different metals touching'))k.push('isolate');
+  if(has(f.signs,'Paint bubbling over rust')||has(f.apps,'Painted steel item')||has(f.apps,'Galvanised steel item'))k.push('coat');
+  if(any(['Spalling or falling concrete','Exposed reinforcement','Rust staining on concrete','Cracking along steel'],f.signs))k.push('concrete','keepAway');
+  if(has(f.apps,'Balcony railing / balustrade')&&(rusty||has(f.signs,'Loose or moving fixing')))k.push('keepAway');
+  if(has(f.apps,'Air-conditioner unit'))k.push('ac');
+  if(has(f.apps,'Outdoor furniture'))k.push('furnWash');
+  if(has(f.apps,'Outdoor furniture')&&has(f.signs,'Different metals touching'))k.push('isolate');
+  if(has(f.apps,'Indoor metal furniture / fittings'))k.push('indoorRH');
+  if(has(f.signs,'Chalky or blistered coating'))k.push('furnWash','coat');
+  if(has(f.apps,'Shared building area'))k.push('report');
+  return k.filter(function(x,i){return k.indexOf(x)===i;});
+}
+function stepHtml(key){var s=STEPS[key];return esc(s.t)+' <span class="src" style="display:inline">('+s.s.map(srcShort).join(', ')+')</span>';}
+/* ---------- State ---------- */
+function blank(){return {v:1,kind:'salt',settings:{mode:'buyer',theme:'light'},property:{},sweep:{},checks:{},findings:[],metal:[],wash:[],questions:{},seq:0};}
+var S=blank();
+try{var raw=localStorage.getItem(KEY); if(raw){var o=JSON.parse(raw); if(o&&o.v===1){S=Object.assign(blank(),o);}}}catch(e){}
+var saveTimer=null;
+function flush(){
+  clearTimeout(saveTimer);saveTimer=null;
+  try{localStorage.setItem(KEY,JSON.stringify(S));$('#saveState').textContent='SAVED ON THIS DEVICE';}
+  catch(e){$('#saveState').textContent='NOT SAVED - STORAGE FULL';toast('Storage is full. Download a backup, then remove some photos.');}
+}
+function save(){clearTimeout(saveTimer);saveTimer=setTimeout(flush,250);}
+window.addEventListener('pagehide',function(){if(saveTimer)flush();});
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'&&saveTimer)flush();});
+
+/* ---------- Helpers ---------- */
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('show');},2600);}
+function num(v){if(v===''||v==null)return null;var n=parseFloat(v);return isFinite(n)?n:null;}
+function r1(n){return Math.round(n*10)/10;}
+function r2(n){return Math.round(n*100)/100;}
+function mBoth(m){return m==null?'-':r2(m)+' m ('+r1(m*3.28084)+' ft)';}
+function now(){return new Date().toISOString();}
+function fmtDate(iso){if(!iso)return '-';var d=new Date(iso);return d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});}
+function fmtD(d){return d?fmtDate(new Date(d+'T12:00:00').toISOString()):'-';}
+function daysSince(d){if(!d)return null;return Math.floor((Date.now()-new Date(d+'T12:00:00').getTime())/86400000);}
+
+/* ---------- Settings ---------- */
+function applySettings(){
+  document.documentElement.setAttribute('data-theme',S.settings.theme);
+  document.body.setAttribute('data-mode',S.settings.mode);
+  $$('#modeSeg button').forEach(function(b){b.classList.toggle('on',b.dataset.v===S.settings.mode);});
+  $$('#themeSeg button').forEach(function(b){b.classList.toggle('on',b.dataset.v===S.settings.theme);});
+}
+function segBind(id,key,after){ $$('#'+id+' button').forEach(function(b){b.addEventListener('click',function(){S.settings[key]=b.dataset.v;applySettings();save();if(after)after();});}); }
+segBind('modeSeg','mode',function(){renderAll();});
+segBind('themeSeg','theme');
+
+/* ---------- Tabs ---------- */
+var curTab='start';
+function go(t){
+  curTab=t;
+  $$('.view').forEach(function(v){v.classList.add('hide');});
+  $('#view-'+t).classList.remove('hide');
+  $$('#tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.t===t);});
+  if(t==='report')renderReport();
+  if(t==='log')renderLog();
+  if(t==='findings'&&!curId)showList();
+  window.scrollTo(0,0);
+}
+$$('#tabs button').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.t);});});
+$$('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.go);});});
+
+/* ---------- Property ---------- */
+function renderProperty(){ $$('[data-p]').forEach(function(el){el.value=S.property[el.dataset.p]||'';}); }
+$$('[data-p]').forEach(function(el){el.addEventListener('input',function(){S.property[el.dataset.p]=el.value;save();});el.addEventListener('change',function(){S.property[el.dataset.p]=el.value;save();});});
+
+/* ---------- Sweep ---------- */
+var SW_ST=[['unchecked','Not checked'],['none','No signs'],['signs','Signs found'],['noaccess','No access']];
+function renderSweep(){
+  var h='',lastG='',done=0;
+  SWEEP.forEach(function(s){
+    var st=S.sweep[s.id]||{status:'unchecked'}; if(st.status!=='unchecked')done++;
+    if(s.g!==lastG){h+='<tr><td colspan="4" style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);padding-top:16px;border-bottom:1px solid var(--line)">'+esc(s.g)+'</td></tr>';lastG=s.g;}
+    h+='<tr data-id="'+s.id+'"><td data-l="Area"><b>'+esc(s.a)+'</b><div class="sub">'+esc(s.h)+'</div>'+srcTags(s.s)+'</td><td data-l="Status"><div class="stat">';
+    SW_ST.forEach(function(o){h+='<button type="button" data-v="'+o[0]+'" class="'+(st.status===o[0]?'on':'')+'">'+o[1]+'</button>';});
+    h+='</div><input type="text" class="note-in" placeholder="Note (optional)" value="'+esc(st.note||'')+'"></td>';
+    h+='<td data-l="Sheltered or hidden?"><select class="conc"><option value="">-</option><option'+(st.conc==='No'?' selected':'')+'>No</option><option'+(st.conc==='Possibly'?' selected':'')+'>Possibly</option><option'+(st.conc==='Yes'?' selected':'')+'>Yes</option></select></td>';
+    h+='<td>'+(st.status==='signs'?'<button type="button" class="btn sm mk">+ Log finding</button>':'')+'</td></tr>';
+  });
+  $('#sweepTbl tbody').innerHTML=h;
+  $('#sweepCount').textContent=done+' / '+SWEEP.length+' CHECKED';
+}
+$('#sweepTbl').addEventListener('click',function(e){
+  var tr=e.target.closest('tr[data-id]');if(!tr)return;var id=tr.dataset.id;var st=S.sweep[id]||(S.sweep[id]={status:'unchecked'});
+  var b=e.target.closest('.stat button');
+  if(b){st.status=b.dataset.v;save();renderSweep();return;}
+  if(e.target.closest('.mk')){var s=SWEEP.filter(function(x){return x.id===id;})[0];newFinding({room:s.a,source:'Coastal Sweep: '+s.a});}
+});
+$('#sweepTbl').addEventListener('input',function(e){var tr=e.target.closest('tr[data-id]');if(!tr)return;var st=S.sweep[tr.dataset.id]||(S.sweep[tr.dataset.id]={status:'unchecked'});
+  if(e.target.classList.contains('note-in'))st.note=e.target.value; save();});
+$('#sweepTbl').addEventListener('change',function(e){if(e.target.classList.contains('conc')){var tr=e.target.closest('tr[data-id]');var st=S.sweep[tr.dataset.id]||(S.sweep[tr.dataset.id]={status:'unchecked'});st.conc=e.target.value;save();}});
+
+/* ---------- Checks ---------- */
+var CK_ST=[['open','Open'],['ok','OK'],['finding','Finding'],['na','N/A']];
+var ckFilter='all';
+$$('#checkFilter button').forEach(function(b){b.addEventListener('click',function(){ckFilter=b.dataset.v;$$('#checkFilter button').forEach(function(x){x.classList.toggle('on',x===b);});renderChecks();});});
+function renderChecks(){
+  var h='',done=0;
+  CHECKS.forEach(function(c){
+    var st=S.checks[c.id]||{status:'open'}; if(st.status!=='open')done++;
+    if(ckFilter==='High'||ckFilter==='Medium'){if(c.p!==ckFilter)return;}
+    if(ckFilter==='open'&&st.status!=='open')return;
+    if(ckFilter==='finding'&&st.status!=='finding')return;
+    h+='<tr data-id="'+c.id+'"><td data-l="Check"><b>'+esc(c.t)+'</b><div class="sub">'+esc(c.r)+'</div>'+srcTags(c.s)+'</td><td data-l="What to record">'+esc(c.m)+'</td><td data-l="Priority"><span class="risk '+c.p+'">'+c.p+'</span></td><td data-l="Status"><div class="stat">';
+    CK_ST.forEach(function(o){h+='<button type="button" data-v="'+o[0]+'" class="'+(st.status===o[0]?'on':'')+'">'+o[1]+'</button>';});
+    h+='</div><input type="text" class="note-in" placeholder="Note (optional)" value="'+esc(st.note||'')+'">'+(st.status==='finding'?'<div style="margin-top:6px"><button type="button" class="btn sm mk">+ Log finding</button></div>':'')+'</td></tr>';
+  });
+  if(!h)h='<tr><td colspan="4"><div class="empty">No checks match this filter.</div></td></tr>';
+  $('#checkTbl tbody').innerHTML=h;
+  $('#checkCount').textContent=done+' / '+CHECKS.length+' COMPLETED';
+}
+$('#checkTbl').addEventListener('click',function(e){
+  var tr=e.target.closest('tr[data-id]');if(!tr)return;var id=tr.dataset.id;var st=S.checks[id]||(S.checks[id]={status:'open'});
+  var b=e.target.closest('.stat button');
+  if(b){st.status=b.dataset.v;save();renderChecks();return;}
+  if(e.target.closest('.mk')){var c=CHECKS.filter(function(x){return x.id===id;})[0];newFinding({source:'Master check: '+c.t,risk:c.p});}
+});
+$('#checkTbl').addEventListener('input',function(e){var tr=e.target.closest('tr[data-id]');if(!tr)return;var st=S.checks[tr.dataset.id]||(S.checks[tr.dataset.id]={status:'open'});st.note=e.target.value;save();});
+
+/* ---------- Findings ---------- */
+var curId=null;
+function findById(id){return S.findings.filter(function(f){return f.id===id;})[0];}
+function newFinding(pre){
+  S.seq=(S.seq||0)+1;
+  var id='SALT-'+String(S.seq).padStart(3,'0');
+  var f={id:id,created:now(),room:'',apps:[],signs:[],size:null,link:'',desc:'',photos:{},risk:'',riskAuto:true,escalate:'',status:'Open',recheck:'',notes:'',source:''};
+  if(pre)Object.keys(pre).forEach(function(k){f[k]=pre[k];});
+  if(pre&&pre.risk)f.riskAuto=false;
+  S.findings.push(f);save();
+  go('findings');openFinding(id);
+}
+function showList(){curId=null;$('#findEdit').classList.add('hide');$('#findList').classList.remove('hide');renderFindList();}
+function openFinding(id){curId=id;$('#findList').classList.add('hide');$('#findEdit').classList.remove('hide');renderEditor();window.scrollTo(0,0);}
+$('#addFinding').addEventListener('click',function(){newFinding();});
+$('#newFindingStart').addEventListener('click',function(){newFinding();});
+$('#backToList').addEventListener('click',showList);
+
+function isHigh(f){
+  var has=function(a,x){return a.indexOf(x)>-1;};
+  var any=function(list,arr){return list.some(function(x){return has(arr,x);});};
+  var corr=['Rust spots or streaks','Paint bubbling over rust','Flaking or layered rust','Pitting or holes','Salt crust / white deposits','Loose or moving fixing'];
+  if(has(f.signs,'Spalling or falling concrete')||has(f.signs,'Exposed reinforcement'))return true;
+  if(any(['Outdoor electrical fitting','Gas meter / pipe'],f.apps)&&any(corr,f.signs))return true;
+  if(any(STRUCT,f.apps)&&any(['Flaking or layered rust','Pitting or holes','Loose or moving fixing','Cracking along steel'],f.signs))return true;
+  return false;
+}
+function suggestRisk(f){
+  if(isHigh(f))return 'High';
+  if(f.signs.length&&f.signs.every(function(x){return x==='No issue seen';}))return 'Low';
+  if(f.signs.length||f.apps.length)return 'Medium';
+  return '';
+}
+function chipGroup(key,list,f){
+  var h='<div class="chips" data-k="'+key+'">';
+  list.forEach(function(x){h+='<button type="button" class="chip'+(f[key].indexOf(x)>-1?' on':'')+'" data-x="'+esc(x)+'">'+esc(x)+'</button>';});
+  return h+'</div>';
+}
+function stepH(n,tag,title){return '<div class="step-h"><div class="num">'+n+'</div><div><div class="tag">'+tag+'</div><h3>'+title+'</h3></div></div>';}
+function photoSlot(k,t,d,f){
+  var src=f.photos[k];
+  return '<div class="ph" data-ph="'+k+'"><div class="pt">'+t+'</div><div class="pd">'+d+'</div>'+(src?'<img alt="'+t+' photo" src="'+src+'"><div class="row"><label class="btn sm">Replace<input type="file" accept="image/*" capture="environment"></label><button type="button" class="btn sm danger rmph">Remove</button></div>':'<label class="btn sm">Add photo<input type="file" accept="image/*" capture="environment"></label>')+'</div>';
+}
+function cmBoth(c){return c==null?'-':r1(c)+' cm ('+r1(c/2.54)+' in)';}
+function sizeMsg(f){if(f.size==null)return '';return cmBoth(f.size)+' &middot; record the same measurement at each re-check to see change';}
+function renderEditor(){
+  var f=findById(curId);if(!f){showList();return;}
+  if(f.riskAuto){f.risk=suggestRisk(f);}
+  $('#edTitle').textContent=f.id;
+  var h='';
+  if(f.source)h+='<div class="info">Started from: '+esc(f.source)+'</div>';
+  h+='<div class="step">'+stepH(1,'Locate','Where and which item?')+
+    '<label class="f"><span>Location</span><input type="text" data-f="room" value="'+esc(f.room)+'" placeholder="e.g. Level 2 balcony, sea side"></label>'+
+    '<div class="q">Item</div>'+chipGroup('apps',APPS,f)+'</div>';
+  h+='<div class="step">'+stepH(2,'Observe','What do you notice?')+chipGroup('signs',SIGNS,f)+
+    '<label class="f" style="margin-top:12px"><span>Describe what you see (facts only)</span><textarea data-f="desc" placeholder="e.g. Rust streaks below 3 of 4 base plate bolts; hairline crack in concrete beside the front left post">'+esc(f.desc)+'</textarea></label></div>';
+  h+='<div class="step">'+stepH(3,'Measure','Size and links')+
+    '<div class="grid g2"><label class="f"><span>Length or width of the affected area (cm)</span><input type="number" step="0.5" min="0" data-fn="size" value="'+(f.size==null?'':f.size)+'"><span class="conv" id="dConv">'+sizeMsg(f)+'</span></label>'+
+    '<label class="f"><span>Linked finding (other check)</span><input type="text" data-f="link" value="'+esc(f.link)+'" placeholder="e.g. CRAK-002, ELEC-001"></label></div>'+
+    '<p class="hint">Add the item to the Metal &amp; Concrete Register to grade it over time, and sheltered areas to the Wash &amp; Check Log.</p></div>';
+  h+='<div class="step">'+stepH(4,'Photograph','Three-photo evidence set')+
+    '<div class="photos">'+photoSlot('context','1 - Context','The whole item and where it is',f)+photoSlot('close','2 - Close-up','Rust, staining or crack, with a ruler or coin for scale',f)+photoSlot('relation','3 - Relationship','What it holds up or is fixed to',f)+'</div>'+
+    '<p class="hint">Take photos from a safe position. Do not lean over railings or scrape anything.</p></div>';
+  h+='<div class="step">'+stepH(5,'Classify','Priority')+
+    '<div class="row"><div class="seg" id="riskSeg">'+['High','Medium','Low'].map(function(x){return '<button type="button" data-v="'+x+'" class="'+(f.risk===x?'on':'')+'">'+x+'</button>';}).join('')+'</div>'+
+    '<span class="hint">'+(f.riskAuto?'Suggested from your answers. Tap to set your own.':'Set by you. <a href="#" id="riskAutoBtn">Use suggestion</a>')+'</span></div></div>';
+  h+='<div class="step">'+stepH(6,'Escalate','Structural engineer, electrician, gas engineer or specialist')+
+    '<div class="chips" data-single="escalate">'+['Structural engineer','Electrician or gas engineer','Contractor / specialist','Monitor and re-check','Not currently indicated'].map(function(x){return '<button type="button" class="chip'+(f.escalate===x?' on':'')+'" data-x="'+x+'">'+x+'</button>';}).join('')+'</div>'+
+    '<div class="grid g2" style="margin-top:12px"><label class="f"><span>Status</span><select data-f="status">'+['Open','Monitoring','Reported to owner / building','Referred to specialist','Resolved'].map(function(x){return '<option'+(f.status===x?' selected':'')+'>'+x+'</option>';}).join('')+'</select></label>'+
+    '<label class="f owner-only"><span>Re-check date</span><input type="date" data-f="recheck" value="'+esc(f.recheck)+'"></label></div>'+
+    '<label class="f" style="margin-top:12px"><span>Notes</span><textarea data-f="notes">'+esc(f.notes)+'</textarea></label></div>';
+  h+='<div class="row" style="margin-top:6px"><button type="button" class="btn pri" id="doneFinding">Save and close</button><button type="button" class="btn danger" id="delFinding">Delete finding</button></div>';
+  $('#edBody').innerHTML=h;
+  renderPrompts(f);
+}
+function buildPrompts(f){
+  var has=function(a,x){return a.indexOf(x)>-1;};
+  var any=function(list,arr){return list.some(function(x){return has(arr,x);});};
+  var ind=[],next=[],warn=[],esc_=[];
+  f.apps.forEach(function(x){ind.push(x);});
+  f.signs.forEach(function(x){if(x!=='No issue seen')ind.push(x);});
+  if(f.size!=null)ind.push('Size: '+cmBoth(f.size));
+  if(has(f.signs,'Spalling or falling concrete')||has(f.signs,'Exposed reinforcement'))warn.push('Keep people away from the area below. Report it to the owner or building manager and ask for a structural engineer. Act quickly: the risk rises the longer repair is delayed (Designing Buildings).');
+  if(has(f.apps,'Balcony railing / balustrade')&&any(['Flaking or layered rust','Pitting or holes','Loose or moving fixing','Cracking along steel'],f.signs))warn.push('Do not lean on, climb or load this railing. Keep children away and report it for a structural assessment.');
+  if(has(f.apps,'Outdoor electrical fitting')&&f.signs.some(function(x){return x!=='No issue seen';}))warn.push('Do not touch. Ask a licensed electrician to check it, and use the Electrical check.');
+  if(has(f.apps,'Gas meter / pipe')&&f.signs.some(function(x){return x!=='No issue seen';}))warn.push('Do not touch or adjust. Ask a registered gas engineer or your gas supplier. If you smell gas, follow the emergency steps in the Gas & Carbon Monoxide check.');
+  if(has(f.signs,'Sheltered, never rain-washed')||has(f.signs,'Salt crust / white deposits'))next.push('Add this area to the Wash & Check Log. Sheltered areas are not rinsed by rain (FEMA, BRANZ).');
+  if(has(f.signs,'Light discolouration / tea staining'))next.push('Tea staining on stainless steel is cosmetic (ASSDA). Record it, and ask what grade the steel is (304 or 316).');
+  if(has(f.signs,'Different metals touching'))next.push('Photograph the joint and note both metals. Ask a contractor whether they can be separated (AGA).');
+  if(has(f.signs,'Rust spots or streaks')||has(f.signs,'Paint bubbling over rust'))next.push('Grade the item in the Metal & Concrete Register and photograph it from the same spot at each re-check.');
+  if(has(f.apps,'Galvanised steel item'))next.push('Note whether red rust is showing through the grey zinc coating, and roughly how much.');
+  if(has(f.signs,'Rust staining on concrete')||has(f.signs,'Cracking along steel'))next.push('Measure and photograph the stain or crack. Use the Cracks & Movement check to record width over time.');
+  if(has(f.apps,'Air-conditioner unit'))next.push('Ask when the unit was last serviced. An annual contractor check-up includes cleaning the coils (ENERGY STAR).');
+  if(has(f.apps,'Outdoor furniture'))next.push('Check screws, bolts and hinges for rust streaks, and whether steel screws hold aluminium parts (different metals). Add the furniture to the Wash & Check Log.');
+  if(has(f.apps,'Indoor metal furniture / fittings'))next.push('Take humidity readings in this room, morning and evening. The Ventilation & Indoor Air check has a Humidity Log.');
+  if(has(f.apps,'Shared building area'))next.push('Ask the building manager or owners\' body for the latest structural or balcony inspection report.');
+  if(has(f.signs,'Sliding or hinged parts sticking'))next.push('Note which doors or windows stick, especially any you would need to open in an emergency.');
+  if(isHigh(f))esc_.push('A structural engineer, licensed electrician or registered gas engineer (as relevant) should look at this before it is used or loaded.');
+  esc_.push('A visual check cannot measure metal loss, chloride in concrete or structural strength. An engineer or corrosion specialist can.');
+  function uniq(a){return a.filter(function(x,i){return a.indexOf(x)===i;});}
+  return {ind:uniq(ind),next:uniq(next),warn:uniq(warn),esc:uniq(esc_)};
+}
+function renderPrompts(f){
+  var p=buildPrompts(f),h='';
+  p.warn.forEach(function(w){h+='<div class="warn"><b>Safety:</b> '+esc(w)+'</div>';});
+  h+='<h4>Observation pattern</h4>';
+  h+=p.ind.length?'<ul>'+p.ind.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'<p class="hint">Tick the item and what you notice. Prompts build as you go.</p>';
+  if(p.next.length)h+='<h4>Check next</h4><ul>'+p.next.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
+  if(p.esc.length)h+='<h4>Escalation</h4><ul>'+p.esc.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
+  var st=stepsFor(f);
+  if(st.length)h+='<h4>'+(S.settings.mode==='buyer'?'Safe steps (for the owner)':'Safe steps now')+'</h4><ul class="steps">'+st.map(function(k){return '<li>'+stepHtml(k)+'</li>';}).join('')+'</ul>';
+  h+='<p class="hint" style="margin:0">These prompts organise evidence. They do not identify the cause. "Check next" and escalation prompts: professional practice. Safety prompts and safe steps: cited as shown.</p>';
+  $('#promptBox').innerHTML=h;
+}
+function refreshSide(f){
+  if(f.riskAuto){f.risk=suggestRisk(f);$$('#riskSeg button').forEach(function(b){b.classList.toggle('on',b.dataset.v===f.risk);});}
+  var dc=$('#dConv');if(dc)dc.innerHTML=sizeMsg(f);
+  renderPrompts(f);
+}
+$('#edBody').addEventListener('click',function(e){
+  var f=findById(curId);if(!f)return;
+  var chip=e.target.closest('.chip');
+  if(chip){
+    var grp=chip.parentNode,x=chip.dataset.x;
+    if(grp.dataset.k){var a=f[grp.dataset.k],i=a.indexOf(x);if(i>-1)a.splice(i,1);else a.push(x);chip.classList.toggle('on');}
+    else if(grp.dataset.single){var k=grp.dataset.single;f[k]=f[k]===x?'':x;$$('.chip',grp).forEach(function(c){c.classList.toggle('on',c.dataset.x===f[k]);});}
+    save();refreshSide(f);return;
+  }
+  var rb=e.target.closest('#riskSeg button');
+  if(rb){f.risk=rb.dataset.v;f.riskAuto=false;save();renderEditor();return;}
+  if(e.target.id==='riskAutoBtn'){e.preventDefault();f.riskAuto=true;save();renderEditor();return;}
+  if(e.target.closest('.rmph')){var k2=e.target.closest('[data-ph]').dataset.ph;delete f.photos[k2];save();renderEditor();return;}
+  if(e.target.id==='doneFinding'){save();toast(f.id+' saved');showList();return;}
+  if(e.target.id==='delFinding'){
+    if(e.target.dataset.confirm){S.findings=S.findings.filter(function(x){return x.id!==f.id;});save();toast(f.id+' deleted');showList();}
+    else{e.target.dataset.confirm='1';e.target.textContent='Tap again to delete';setTimeout(function(){if(e.target){delete e.target.dataset.confirm;e.target.textContent='Delete finding';}},3000);}
+  }
+});
+$('#edBody').addEventListener('input',function(e){
+  var f=findById(curId);if(!f)return;var t=e.target;
+  if(t.dataset.f){f[t.dataset.f]=t.value;save();}
+  else if(t.dataset.fn){f[t.dataset.fn]=num(t.value);save();refreshSide(f);}
+});
+$('#edBody').addEventListener('change',function(e){
+  var t=e.target;
+  if(t.type==='file'&&t.files&&t.files[0]){
+    var f=findById(curId),k=t.closest('[data-ph]').dataset.ph;
+    compress(t.files[0],function(url){if(!url){toast('Could not read that image.');return;}f.photos[k]=url;save();renderEditor();});
+  } else if(t.tagName==='SELECT'&&t.dataset.f){var f2=findById(curId);f2[t.dataset.f]=t.value;save();}
+});
+function compress(file,cb){
+  var rd=new FileReader();
+  rd.onload=function(){var img=new Image();img.onload=function(){
+    var max=900,w=img.width,h=img.height,sc=Math.min(1,max/Math.max(w,h));
+    var c=document.createElement('canvas');c.width=Math.round(w*sc);c.height=Math.round(h*sc);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    try{cb(c.toDataURL('image/jpeg',0.62));}catch(err){cb(null);}
+  };img.onerror=function(){cb(null);};img.src=rd.result;};
+  rd.onerror=function(){cb(null);};
+  rd.readAsDataURL(file);
+}
+function renderFindList(){
+  var h='';
+  $('#findCount').textContent=S.findings.length+' FINDING'+(S.findings.length===1?'':'S');
+  if(!S.findings.length){h='<div class="empty">No findings yet. Tap <b>+ New finding</b>, or log one from the Coastal Sweep or Master Checks.</div>';}
+  S.findings.forEach(function(f){
+    var pc=Object.keys(f.photos).length;
+    h+='<div class="fcard '+(f.risk||'')+'"><div><div class="row"><span class="fid">'+f.id+'</span>'+(f.risk?'<span class="risk '+f.risk+'">'+f.risk+'</span>':'')+'<span class="hint">'+esc(f.status)+'</span></div>'+
+      '<div style="margin-top:4px"><b>'+esc(f.room||'Location not set')+'</b></div>'+
+      '<div class="meta">'+esc(f.apps.join(', ')||'Item not set')+' &middot; '+esc(f.signs.join(', ')||'No observations yet')+'</div>'+
+      '<div class="meta">Photos: '+pc+'/3 &middot; Escalation: '+esc(f.escalate||'not set')+'</div></div>'+
+      '<div><button type="button" class="btn sm" data-open="'+f.id+'">Open</button></div></div>';
+  });
+  $('#findItems').innerHTML=h;
+}
+$('#findItems').addEventListener('click',function(e){var b=e.target.closest('[data-open]');if(b)openFinding(b.dataset.open);});
+
+
+/* ---------- Metal register & wash log ---------- */
+var GRADES=['0 - No visible corrosion','1 - Light discolouration or staining','2 - Rust spots, streaks or paint bubbling','3 - Flaking rust, pitting or cracking','4 - Loose, holes, spalling or exposed steel'];
+function mrFlags(m){
+  var st=[];
+  if(m.grade>=4)st.push({t:'Specialist needed',c:'High'});
+  else if(m.grade===3)st.push({t:'Get advice, re-check soon',c:'High'});
+  else if(m.grade===2)st.push({t:'Monitor, re-grade at next check',c:'Medium'});
+  if(m.mix==='Yes')st.push({t:'Different metals touching (AGA)',c:'Medium'});
+  if(m.exp==='Sheltered, not rain-washed'&&m.mat!=='Reinforced concrete')st.push({t:'Add to wash log',c:'Medium'});
+  if(!st.length)st.push({t:'OK',c:'Low'});
+  return st;
+}
+function addMonths(d,n){var x=new Date(d+'T12:00:00');x.setMonth(x.getMonth()+n);return x.toISOString().slice(0,10);}
+function wlStatus(w){
+  if(!w.date)return {t:'Date not recorded',c:'Medium',due:null};
+  var due=addMonths(w.date,w.int),d=-daysSince(due);
+  if(d<0)return {t:'Overdue ('+(-d)+' days)',c:'High',due:due};
+  if(d<=30)return {t:'Due in '+d+' days',c:'Medium',due:due};
+  return {t:'OK',c:'Low',due:due};
+}
+function renderLog(){
+  var h='';
+  S.metal.forEach(function(m,i){
+    h+='<tr><td data-l="Item"><b>'+esc(m.item)+'</b>'+(m.loc?'<div class="sub">'+esc(m.loc)+'</div>':'')+(m.date?'<div class="sub">Graded '+fmtD(m.date)+'</div>':'')+'</td><td data-l="Material">'+esc(m.mat)+'</td><td data-l="Exposure">'+esc(m.exp)+'</td><td data-l="Grade">'+esc(GRADES[m.grade])+'</td><td data-l="Flags">'+mrFlags(m).map(function(x){return '<span class="risk '+x.c+'" style="margin:0 4px 4px 0;display:inline-block">'+esc(x.t)+'</span>';}).join('')+'</td><td><button type="button" class="btn sm ghost" data-mrdel="'+i+'">Remove</button></td></tr>';});
+  if(!h)h='<tr><td colspan="6"><div class="empty">No items in the register yet.</div></td></tr>';
+  $('#mrTbl tbody').innerHTML=h;
+  var g34=S.metal.filter(function(m){return m.grade>=3;}).length;
+  $('#mrCount').textContent=S.metal.length+' ITEM'+(S.metal.length===1?'':'S')+(g34?' · '+g34+' GRADE 3-4':'');
+  var v='';
+  S.wash.forEach(function(w,i){var st=wlStatus(w);
+    v+='<tr><td data-l="Area">'+esc(w.area)+'</td><td data-l="Task">'+esc(w.task)+'</td><td data-l="Done">'+fmtD(w.date)+'</td><td data-l="Next due">'+fmtD(st.due)+' <span class="sub">(every '+w.int+' months)</span></td><td data-l="Status"><span class="risk '+st.c+'">'+esc(st.t)+'</span></td><td><button type="button" class="btn sm ghost" data-wldel="'+i+'">Remove</button></td></tr>';});
+  if(!v)v='<tr><td colspan="6"><div class="empty">No washing or checks logged yet.</div></td></tr>';
+  $('#wlTbl tbody').innerHTML=v;
+  var od=S.wash.filter(function(w){return wlStatus(w).c==='High';}).length;
+  $('#wlCount').textContent=S.wash.length+' ENTR'+(S.wash.length===1?'Y':'IES')+(od?' · '+od+' OVERDUE':'');
+}
+$('#mrSave').addEventListener('click',function(){
+  if(!$('#mrItem').value){toast('Enter the item.');return;}
+  S.metal.push({item:$('#mrItem').value,loc:$('#mrLoc').value,mat:$('#mrMat').value,exp:$('#mrExp').value,grade:+$('#mrGrade').value,mix:$('#mrMix').value,date:$('#mrDate').value});
+  save();['mrItem','mrLoc'].forEach(function(id){$('#'+id).value='';});renderLog();toast('Added to register');
+});
+$('#mrTbl').addEventListener('click',function(e){var b=e.target.closest('[data-mrdel]');if(!b)return;S.metal.splice(+b.dataset.mrdel,1);save();renderLog();});
+$('#wlSave').addEventListener('click',function(){
+  if(!$('#wlArea').value){toast('Enter the area or item.');return;}
+  S.wash.push({area:$('#wlArea').value,task:$('#wlTask').value,date:$('#wlDate').value,int:+$('#wlInt').value});
+  save();['wlArea','wlDate'].forEach(function(id){$('#'+id).value='';});renderLog();toast('Added to log');
+});
+$('#wlTbl').addEventListener('click',function(e){var b=e.target.closest('[data-wldel]');if(!b)return;S.wash.splice(+b.dataset.wldel,1);save();renderLog();});
+
+/* ---------- Report ---------- */
+function renderReport(){
+  var P=S.property,mode=S.settings.mode==='buyer'?'Pre-Purchase':'Maintenance';
+  var hi=0,esc_=0;S.findings.forEach(function(f){if(f.risk==='High')hi++;if(f.escalate==='Structural engineer'||f.escalate==='Electrician or gas engineer'||f.escalate==='Contractor / specialist')esc_++;});
+  var g34=S.metal.filter(function(m){return m.grade>=3;}).length;
+  var h='<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px">'+
+    '<div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--cyan)">THE SNAG TAG &middot; BENEATH THE SURFACE</div><h2 style="margin:4px 0 0;font-size:22px">Coastal Corrosion Record</h2><div class="hint">'+mode+' check</div></div>'+
+    '<div style="font-family:var(--mono);font-size:12px;text-align:right">'+esc(P.name||'Property')+'<br>'+esc(P.address||'')+'<br>Date: '+esc(P.date||'-')+'<br>By: '+esc(P.inspector||'-')+'</div></div>';
+  h+='<div class="sum-grid"><div class="kpi"><div class="k">Findings</div><div class="v">'+S.findings.length+'</div></div><div class="kpi"><div class="k">High priority</div><div class="v" style="color:var(--high)">'+hi+'</div></div><div class="kpi"><div class="k">Items grade 3-4</div><div class="v">'+g34+'</div></div><div class="kpi"><div class="k">Specialist needed</div><div class="v">'+esc_+'</div></div></div>';
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Property and exposure</h3><p style="margin:0;font-size:14px">Type: '+esc(P.ptype||'-')+' &middot; Distance to the sea: '+esc(P.dist||'-')+' &middot; Faces the sea or sea wind: '+esc(P.faces||'-')+' &middot; Building age: '+esc(P.age||'-')+(P.manager?' &middot; Building manager: '+esc(P.manager):'')+(S.settings.mode==='buyer'?' &middot; Occupied: '+esc(P.occupied||'-'):'')+'</p><p class="hint">Distance from the sea is recorded as context, not as the cause of any defect.</p>'+(P.notes?'<p style="font-size:14px">'+esc(P.notes)+'</p>':'');
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Metal &amp; concrete register</h3>'+(S.metal.length?'<table class="tbl"><thead><tr><th>Item</th><th>Material</th><th>Exposure</th><th>Grade</th><th>Flags</th></tr></thead><tbody>'+S.metal.map(function(m){return '<tr><td>'+esc(m.item)+(m.loc?' - '+esc(m.loc):'')+'</td><td>'+esc(m.mat)+'</td><td>'+esc(m.exp)+'</td><td>'+esc(GRADES[m.grade])+'</td><td>'+mrFlags(m).map(function(x){return esc(x.t);}).join('; ')+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">No items recorded.</p>');
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Wash &amp; check log</h3>'+(S.wash.length?'<table class="tbl"><thead><tr><th>Area</th><th>Task</th><th>Done</th><th>Next due</th><th>Status</th></tr></thead><tbody>'+S.wash.map(function(w){var st=wlStatus(w);return '<tr><td>'+esc(w.area)+'</td><td>'+esc(w.task)+'</td><td>'+fmtD(w.date)+'</td><td>'+fmtD(st.due)+'</td><td>'+esc(st.t)+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">Nothing logged.</p>');
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Findings</h3>';
+  if(!S.findings.length)h+='<p class="hint">No findings recorded.</p>';
+  S.findings.forEach(function(f){
+    var p=buildPrompts(f),st=stepsFor(f);
+    h+='<div class="rep-f"><div class="row"><span class="fid">'+f.id+'</span>'+(f.risk?'<span class="risk '+f.risk+'">'+f.risk+'</span>':'')+'<b>'+esc(f.room||'')+'</b></div><dl>'+
+      '<dt>Item</dt><dd>'+esc(f.apps.join(', ')||'-')+'</dd>'+
+      '<dt>Observation</dt><dd>'+esc(f.signs.join(', ')||'-')+(f.desc?'<br>'+esc(f.desc):'')+'</dd>'+
+      (f.size!=null?'<dt>Size</dt><dd>'+cmBoth(f.size)+'</dd>':'')+
+      (f.link?'<dt>Linked</dt><dd>'+esc(f.link)+'</dd>':'')+
+      '<dt>Escalation</dt><dd>'+esc(f.escalate||'-')+' &middot; Status: '+esc(f.status)+(f.recheck?' &middot; Re-check: '+esc(f.recheck):'')+'</dd>'+
+      (p.warn.length?'<dt>Safety</dt><dd>'+p.warn.map(esc).join('<br>')+'</dd>':'')+
+      (p.next.length?'<dt>Check next</dt><dd>'+p.next.map(esc).join('<br>')+'</dd>':'')+
+      (st.length?'<dt>Safe steps</dt><dd>'+st.map(stepHtml).join('<br>')+'</dd>':'')+
+      (f.notes?'<dt>Notes</dt><dd>'+esc(f.notes)+'</dd>':'')+'</dl>';
+    var ph=[['context','Context'],['close','Close-up'],['relation','Relationship']].filter(function(x){return f.photos[x[0]];});
+    if(ph.length)h+='<div class="rep-photos">'+ph.map(function(x){return '<figure><img alt="'+x[1]+'" src="'+f.photos[x[0]]+'"><figcaption>'+x[1]+'</figcaption></figure>';}).join('')+'</div>';
+    h+='</div>';
+  });
+  var sw=SWEEP.filter(function(s){return S.sweep[s.id]&&S.sweep[s.id].status!=='unchecked';});
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Coastal Sweep</h3>';
+  h+=sw.length?'<table class="tbl"><thead><tr><th>Area</th><th>Result</th><th>Sheltered?</th><th>Note</th></tr></thead><tbody>'+sw.map(function(s){var st=S.sweep[s.id];return '<tr><td>'+esc(s.a)+'</td><td>'+esc(SW_ST.filter(function(o){return o[0]===st.status;})[0][1])+'</td><td>'+esc(st.conc||'-')+'</td><td>'+esc(st.note||'')+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">Not started.</p>';
+  var nc=SWEEP.length-sw.length; if(nc>0)h+='<p class="hint">'+nc+' area(s) not checked.</p>';
+  var ck=CHECKS.filter(function(c){return S.checks[c.id]&&S.checks[c.id].status!=='open';});
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Master Checks</h3>';
+  h+=ck.length?'<table class="tbl"><thead><tr><th>Check</th><th>Priority</th><th>Result</th><th>Note</th></tr></thead><tbody>'+ck.map(function(c){var st=S.checks[c.id];return '<tr><td>'+esc(c.t)+'</td><td><span class="risk '+c.p+'">'+c.p+'</span></td><td>'+esc(CK_ST.filter(function(o){return o[0]===st.status;})[0][1])+'</td><td>'+esc(st.note||'')+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">Not started.</p>';
+  var oc=CHECKS.length-ck.length; if(oc>0)h+='<p class="hint">'+oc+' check(s) still open.</p>';
+  if(S.settings.mode==='buyer'){
+    h+='<h3 style="font-size:15px;margin:18px 0 6px">Questions for the seller or agent</h3><div class="no-print hint" style="margin-bottom:6px">Tick the questions you want on your printed record.</div><ul style="list-style:none;padding:0;margin:0">';
+    QUESTIONS.forEach(function(q,i){var on=S.questions[i]!==false;h+='<li style="margin-bottom:6px;'+(on?'':'opacity:.45')+'" class="'+(on?'':'no-print')+'"><label style="display:flex;gap:8px;align-items:flex-start;font-size:14px"><input type="checkbox" data-q="'+i+'"'+(on?' checked':'')+'> <span>'+esc(q)+'</span></label></li>';});
+    h+='</ul><p class="hint">Building inspection rules for coastal and apartment buildings differ between countries and regions. Check with your conveyancer, agent or local authority.</p>';
+  }
+  h+='<div class="info" style="margin-top:18px"><b>Important:</b> this record documents visible corrosion and maintenance. It does not measure metal loss, chloride in concrete or structural strength, and does not replace a structural inspection.</div>';
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Sources</h3><ul class="srclist">'+Object.keys(SRC).map(function(k){var s=SRC[k];return '<li><b>'+esc(s.n)+'</b> ('+esc(s.d)+')'+(s.u?'<br><span class="hint">'+esc(s.u)+'</span>':'')+'</li>';}).join('')+'</ul>';
+  $('#reportBody').innerHTML=h;
+}
+$('#reportBody').addEventListener('change',function(e){var q=e.target.dataset.q;if(q==null)return;S.questions[q]=e.target.checked;save();renderReport();});
+$('#printBtn').addEventListener('click',function(){renderReport();window.print();});
+$('#exportBtn').addEventListener('click',function(){
+  var blob=new Blob([JSON.stringify(S,null,1)],{type:'application/json'});var a=document.createElement('a');
+  var nm=(S.property.name||'property').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').toLowerCase()||'property';
+  a.href=URL.createObjectURL(blob);a.download='coastal-'+nm+'-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);toast('Backup downloaded');
+});
+$('#importFile').addEventListener('change',function(e){
+  var file=e.target.files[0];if(!file)return;var rd=new FileReader();
+  rd.onload=function(){try{var o=JSON.parse(rd.result);if(!o||o.v!==1||o.kind!=='salt'||!Array.isArray(o.findings))throw 0;S=Object.assign(blank(),o);save();applySettings();renderAll();go('report');toast('Backup restored');}catch(err){toast('That file is not a valid Coastal Corrosion backup.');}e.target.value='';};
+  rd.readAsText(file);
+});
+$('#resetBtn').addEventListener('click',function(e){
+  var b=e.currentTarget;
+  if(b.dataset.confirm){var keep=S.settings;S=blank();S.settings=keep;save();renderAll();toast('All data cleared');delete b.dataset.confirm;b.textContent='Clear all data';}
+  else{b.dataset.confirm='1';b.textContent='Tap again to clear everything';setTimeout(function(){delete b.dataset.confirm;b.textContent='Clear all data';},3500);}
+});
+
+/* ---------- Guide ---------- */
+function renderGuide(){
+  $('#stepsList').innerHTML=Object.keys(STEPS).map(function(k){return '<li>'+stepHtml(k)+'</li>';}).join('');
+  $('#srcList').innerHTML=Object.keys(SRC).map(function(k){var s=SRC[k];return '<li id="src-'+k+'"><span class="key">'+srcShort(k)+'</span><b>'+esc(s.n)+'</b> ('+esc(s.d)+')'+(s.u?'<br><a href="'+s.u+'" target="_blank" rel="noopener">'+esc(s.u)+'</a>':'')+'</li>';}).join('');
+}
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[data-src]');if(!a)return;e.preventDefault();e.stopPropagation();
+  go('guide');var el=document.getElementById('src-'+a.dataset.src);if(el){setTimeout(function(){el.scrollIntoView({block:'center'});el.style.background='var(--cyan-soft)';setTimeout(function(){el.style.background='';},1800);},30);}
+},true);
+
+/* ---------- Init ---------- */
+function renderAll(){renderProperty();renderSweep();renderChecks();renderLog();if(curId&&findById(curId))renderEditor();else showList();if(curTab==='report')renderReport();}
+if(!S.property.date){S.property.date=new Date().toISOString().slice(0,10);}
+['metal','wash'].forEach(function(k){if(!Array.isArray(S[k]))S[k]=[];});
+renderGuide();applySettings();renderAll();go('start');
+})();
+</script>
+</body>
+</html>
