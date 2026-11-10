@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Beneath the Surface - Coastal Corrosion | The Snag Tag</title>
-<meta name="description" content="Coastal corrosion checker for home buyers and owners, houses and apartments: exposure profile, metal, concrete and furniture register, wash and check log, all cited to international guidance. Part of The Snag Tag Beneath the Surface collection.">
+<title>Salt Line - Coastal Corrosion Record | Beneath the Surface | The Snag Tag</title>
+<meta name="description" content="Salt air works slowly. Record corrosion on metals, fixings and balconies, keep a wash log and stay ahead of it. For houses and apartments.">
 <style>
 :root{
   --paper:#F7FAFD; --sheet:#FFFFFF; --grid:rgba(45,91,154,.07); --grid2:rgba(45,91,154,.035);
@@ -205,6 +205,21 @@ body[data-mode="owner"] .buyer-only{display:none!important}
   main{padding:0}
 }
 </style>
+<style id="bts-identity">
+/* Beneath the Surface - Life Events group identity */
+:root:not([data-theme="dark"]){
+  --paper:#FAF6EE; --ink:#1F2B44; --ink2:#3F4A60; --muted:#6B7285;
+  --line:#DCD3C2; --line2:#EDE6D8; --grid:rgba(35,50,79,.06); --grid2:rgba(35,50,79,.03);
+  --blue:#23324F; --blue-soft:#ECEEF3; --cyan:#A65B3B; --cyan-soft:#F7E9E2; --focus:#A65B3B;
+}
+body{font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+.brand h1,.sheet-h h2{font-family:"Courier New",ui-monospace,monospace;letter-spacing:0}
+.brand .plain{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.sheet-h{position:relative}
+.sheet-h::after{content:"";position:absolute;left:16px;right:16px;bottom:-4px;height:6px;background:radial-gradient(circle,#A65B3B 1.4px,transparent 1.6px) center/9px 6px repeat-x;opacity:.75;pointer-events:none}
+.trail-name{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin:0 0 6px}
+@media print{.sheet-h::after{display:none}}
+</style>
 </head>
 <body data-mode="buyer">
 
@@ -212,7 +227,7 @@ body[data-mode="owner"] .buyer-only{display:none!important}
   <div class="wrap tb-row" style="padding:0">
     <div class="tb-cell brand">
       <div class="coll">The Snag Tag &middot; Beneath the Surface</div>
-      <h1>Coastal <span>Corrosion</span></h1>
+      <h1>Salt <span>Line</span></h1><div class="plain">Coastal Corrosion Record</div>
     </div>
     <div class="tb-cell">
       <div class="tb-label">Mode</div>
@@ -232,11 +247,11 @@ body[data-mode="owner"] .buyer-only{display:none!important}
 <nav class="tabs">
   <div class="wrap" id="tabs">
     <button data-t="start"><span class="n">00</span>Start</button>
-    <button data-t="sweep"><span class="n">01</span>Coastal Sweep</button>
-    <button data-t="checks"><span class="n">02</span>Master Checks</button>
-    <button data-t="findings"><span class="n">03</span>Findings</button>
+    <button data-t="sweep"><span class="n">01</span>Hiding Places</button>
+    <button data-t="checks"><span class="n">02</span>Trail Points</button>
+    <button data-t="findings"><span class="n">03</span>Evidence File</button>
     <button data-t="log"><span class="n">04</span>Metal Register &amp; Wash Log</button>
-    <button data-t="report"><span class="n">05</span>Report</button>
+    <button data-t="report"><span class="n">05</span>Your Record</button>
     <button data-t="guide"><span class="n">06</span>Guide &amp; Standards</button>
   </div>
 </nav>
@@ -292,7 +307,7 @@ body[data-mode="owner"] .buyer-only{display:none!important}
         <li>Look only at corroded electrical fittings, meters, gas pipes and air-conditioner parts. Never touch, open or scrape them. <span class="src" style="display:inline">(<a href="#" data-src="PP">Professional practice</a>)</span></li>
         <li>Don't scrape, hammer or pick at rust or concrete to "see how bad it is". <span class="src" style="display:inline">(<a href="#" data-src="PP">Professional practice</a>)</span></li>
       </ul>
-      <div class="row" style="margin-top:14px"><button class="btn pri" data-go="sweep">Start the Coastal Sweep &rarr;</button><button class="btn" id="newFindingStart">Log something now</button></div>
+      <div class="row" style="margin-top:14px"><button class="btn pri" data-go="sweep">Start with the Hiding Places &rarr;</button><button class="btn" id="newFindingStart">Log something now</button></div>
     </div>
   </div>
 </section>
@@ -300,7 +315,7 @@ body[data-mode="owner"] .buyer-only{display:none!important}
 <!-- SWEEP -->
 <section class="view hide" id="view-sweep">
   <div class="sheet">
-    <div class="sheet-h"><h2>Coastal Sweep</h2><span class="ref">SHEET 01 &middot; <span id="sweepCount"></span></span></div>
+    <div class="sheet-h"><h2>Hiding Places</h2><span class="ref">SHEET 01 &middot; <span id="sweepCount"></span></span></div>
     <div class="sheet-b">
       <p class="lede">Walk the outside first, sea-facing side first, then the sheltered spots. For each area, also ask: <b>is this spot ever washed by rain, or is it sheltered?</b> Sheltered areas can build up salt that rain never rinses away.</p>
       <div class="tbl-wrap"><table class="tbl stack" id="sweepTbl">
@@ -314,15 +329,15 @@ body[data-mode="owner"] .buyer-only{display:none!important}
 <!-- CHECKS -->
 <section class="view hide" id="view-checks">
   <div class="sheet">
-    <div class="sheet-h"><h2>Master Coastal Corrosion Checks</h2><span class="ref">SHEET 02 &middot; <span id="checkCount"></span></span></div>
+    <div class="sheet-h"><h2>Trail Points</h2><span class="ref">SHEET 02 &middot; <span id="checkCount"></span></span></div>
     <div class="sheet-b">
       <p class="lede">Visual checks and maintenance habits. The <b>priority</b> shows how soon a structural engineer, electrician, gas engineer or specialist should look if the sign is found. It is not a diagnosis.</p>
       <div class="row" style="margin-bottom:10px">
         <span class="hint">Filter:</span>
-        <div class="seg" id="checkFilter"><button data-v="all" class="on">All</button><button data-v="High">High</button><button data-v="Medium">Medium</button><button data-v="open">Open</button><button data-v="finding">Findings</button></div>
+        <div class="seg" id="checkFilter"><button data-v="all" class="on">All</button><button data-v="High">High</button><button data-v="Medium">Medium</button><button data-v="open">Open</button><button data-v="finding">Evidence File</button></div>
       </div>
       <div class="tbl-wrap"><table class="tbl stack" id="checkTbl">
-        <thead><tr><th style="width:30%">Check</th><th style="width:26%">What to record</th><th>Priority</th><th>Status</th></tr></thead>
+        <thead><tr><th style="width:30%">Trail point</th><th style="width:26%">What to record</th><th>Priority</th><th>Status</th></tr></thead>
         <tbody></tbody>
       </table></div>
     </div>
@@ -333,14 +348,14 @@ body[data-mode="owner"] .buyer-only{display:none!important}
 <section class="view hide" id="view-findings">
   <div id="findList">
     <div class="sheet">
-      <div class="sheet-h"><h2>Findings Register</h2><div class="row"><span class="ref" id="findCount"></span><button class="btn pri sm" id="addFinding">+ New finding</button></div></div>
+      <div class="sheet-h"><h2>Evidence File</h2><div class="row"><span class="ref" id="findCount"></span><button class="btn pri sm" id="addFinding">+ New snag</button></div></div>
       <div class="sheet-b" id="findItems"></div>
     </div>
   </div>
   <div id="findEdit" class="hide">
-    <div class="row no-print" style="margin-bottom:10px"><button class="btn ghost sm" id="backToList">&larr; All findings</button></div>
+    <div class="row no-print" style="margin-bottom:10px"><button class="btn ghost sm" id="backToList">&larr; All snags</button></div>
     <div class="editor-layout">
-      <div class="sheet"><div class="sheet-h"><h2 id="edTitle">SALT-001</h2><span class="ref">FINDING RECORD</span></div>
+      <div class="sheet"><div class="sheet-h"><h2 id="edTitle">SALT-001</h2><span class="ref">SNAG RECORD</span></div>
         <div class="sheet-b" id="edBody"></div>
       </div>
       <aside class="side"><div class="prompt-box" id="promptBox"></div></aside>
@@ -454,7 +469,7 @@ body[data-mode="owner"] .buyer-only{display:none!important}
 </div>
 </main>
 
-<footer><div class="wrap"><span>THE SNAG TAG &middot; BENEATH THE SURFACE COLLECTION &middot; SPECIALIST CHECK 09: COASTAL CORROSION</span><span id="saveState">SAVED ON THIS DEVICE</span></div></footer>
+<footer><div class="wrap"><span>THE SNAG TAG &middot; BENEATH THE SURFACE COLLECTION &middot; 09 &middot; SALT LINE</span><span id="saveState">SAVED ON THIS DEVICE</span></div></footer>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -639,7 +654,7 @@ $$('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(b.d
 function renderProperty(){ $$('[data-p]').forEach(function(el){el.value=S.property[el.dataset.p]||'';}); }
 $$('[data-p]').forEach(function(el){el.addEventListener('input',function(){S.property[el.dataset.p]=el.value;save();});el.addEventListener('change',function(){S.property[el.dataset.p]=el.value;save();});});
 
-/* ---------- Sweep ---------- */
+/* ---------- Hiding Places ---------- */
 var SW_ST=[['unchecked','Not checked'],['none','No signs'],['signs','Signs found'],['noaccess','No access']];
 function renderSweep(){
   var h='',lastG='',done=0;
@@ -659,14 +674,14 @@ $('#sweepTbl').addEventListener('click',function(e){
   var tr=e.target.closest('tr[data-id]');if(!tr)return;var id=tr.dataset.id;var st=S.sweep[id]||(S.sweep[id]={status:'unchecked'});
   var b=e.target.closest('.stat button');
   if(b){st.status=b.dataset.v;save();renderSweep();return;}
-  if(e.target.closest('.mk')){var s=SWEEP.filter(function(x){return x.id===id;})[0];newFinding({room:s.a,source:'Coastal Sweep: '+s.a});}
+  if(e.target.closest('.mk')){var s=SWEEP.filter(function(x){return x.id===id;})[0];newFinding({room:s.a,source:'Hiding Places: '+s.a});}
 });
 $('#sweepTbl').addEventListener('input',function(e){var tr=e.target.closest('tr[data-id]');if(!tr)return;var st=S.sweep[tr.dataset.id]||(S.sweep[tr.dataset.id]={status:'unchecked'});
   if(e.target.classList.contains('note-in'))st.note=e.target.value; save();});
 $('#sweepTbl').addEventListener('change',function(e){if(e.target.classList.contains('conc')){var tr=e.target.closest('tr[data-id]');var st=S.sweep[tr.dataset.id]||(S.sweep[tr.dataset.id]={status:'unchecked'});st.conc=e.target.value;save();}});
 
 /* ---------- Checks ---------- */
-var CK_ST=[['open','Open'],['ok','OK'],['finding','Finding'],['na','N/A']];
+var CK_ST=[['open','Open'],['ok','OK'],['finding','Snag'],['na','N/A']];
 var ckFilter='all';
 $$('#checkFilter button').forEach(function(b){b.addEventListener('click',function(){ckFilter=b.dataset.v;$$('#checkFilter button').forEach(function(x){x.classList.toggle('on',x===b);});renderChecks();});});
 function renderChecks(){
@@ -676,7 +691,7 @@ function renderChecks(){
     if(ckFilter==='High'||ckFilter==='Medium'){if(c.p!==ckFilter)return;}
     if(ckFilter==='open'&&st.status!=='open')return;
     if(ckFilter==='finding'&&st.status!=='finding')return;
-    h+='<tr data-id="'+c.id+'"><td data-l="Check"><b>'+esc(c.t)+'</b><div class="sub">'+esc(c.r)+'</div>'+srcTags(c.s)+'</td><td data-l="What to record">'+esc(c.m)+'</td><td data-l="Priority"><span class="risk '+c.p+'">'+c.p+'</span></td><td data-l="Status"><div class="stat">';
+    h+='<tr data-id="'+c.id+'"><td data-l="Trail point"><b>'+esc(c.t)+'</b><div class="sub">'+esc(c.r)+'</div>'+srcTags(c.s)+'</td><td data-l="What to record">'+esc(c.m)+'</td><td data-l="Priority"><span class="risk '+c.p+'">'+c.p+'</span></td><td data-l="Status"><div class="stat">';
     CK_ST.forEach(function(o){h+='<button type="button" data-v="'+o[0]+'" class="'+(st.status===o[0]?'on':'')+'">'+o[1]+'</button>';});
     h+='</div><input type="text" class="note-in" placeholder="Note (optional)" value="'+esc(st.note||'')+'">'+(st.status==='finding'?'<div style="margin-top:6px"><button type="button" class="btn sm mk">+ Log finding</button></div>':'')+'</td></tr>';
   });
@@ -776,17 +791,17 @@ function buildPrompts(f){
   if(f.size!=null)ind.push('Size: '+cmBoth(f.size));
   if(has(f.signs,'Spalling or falling concrete')||has(f.signs,'Exposed reinforcement'))warn.push('Keep people away from the area below. Report it to the owner or building manager and ask for a structural engineer. Act quickly: the risk rises the longer repair is delayed (Designing Buildings).');
   if(has(f.apps,'Balcony railing / balustrade')&&any(['Flaking or layered rust','Pitting or holes','Loose or moving fixing','Cracking along steel'],f.signs))warn.push('Do not lean on, climb or load this railing. Keep children away and report it for a structural assessment.');
-  if(has(f.apps,'Outdoor electrical fitting')&&f.signs.some(function(x){return x!=='No issue seen';}))warn.push('Do not touch. Ask a licensed electrician to check it, and use the Electrical check.');
-  if(has(f.apps,'Gas meter / pipe')&&f.signs.some(function(x){return x!=='No issue seen';}))warn.push('Do not touch or adjust. Ask a registered gas engineer or your gas supplier. If you smell gas, follow the emergency steps in the Gas & Carbon Monoxide check.');
+  if(has(f.apps,'Outdoor electrical fitting')&&f.signs.some(function(x){return x!=='No issue seen';}))warn.push('Do not touch. Ask a licensed electrician to check it, and use Hands Off, Eyes On.');
+  if(has(f.apps,'Gas meter / pipe')&&f.signs.some(function(x){return x!=='No issue seen';}))warn.push('Do not touch or adjust. Ask a registered gas engineer or your gas supplier. If you smell gas, follow the emergency steps in Odourless.');
   if(has(f.signs,'Sheltered, never rain-washed')||has(f.signs,'Salt crust / white deposits'))next.push('Add this area to the Wash & Check Log. Sheltered areas are not rinsed by rain (FEMA, BRANZ).');
   if(has(f.signs,'Light discolouration / tea staining'))next.push('Tea staining on stainless steel is cosmetic (ASSDA). Record it, and ask what grade the steel is (304 or 316).');
   if(has(f.signs,'Different metals touching'))next.push('Photograph the joint and note both metals. Ask a contractor whether they can be separated (AGA).');
   if(has(f.signs,'Rust spots or streaks')||has(f.signs,'Paint bubbling over rust'))next.push('Grade the item in the Metal & Concrete Register and photograph it from the same spot at each re-check.');
   if(has(f.apps,'Galvanised steel item'))next.push('Note whether red rust is showing through the grey zinc coating, and roughly how much.');
-  if(has(f.signs,'Rust staining on concrete')||has(f.signs,'Cracking along steel'))next.push('Measure and photograph the stain or crack. Use the Cracks & Movement check to record width over time.');
+  if(has(f.signs,'Rust staining on concrete')||has(f.signs,'Cracking along steel'))next.push('Measure and photograph the stain or crack. Use Crack Diary to record width over time.');
   if(has(f.apps,'Air-conditioner unit'))next.push('Ask when the unit was last serviced. An annual contractor check-up includes cleaning the coils (ENERGY STAR).');
   if(has(f.apps,'Outdoor furniture'))next.push('Check screws, bolts and hinges for rust streaks, and whether steel screws hold aluminium parts (different metals). Add the furniture to the Wash & Check Log.');
-  if(has(f.apps,'Indoor metal furniture / fittings'))next.push('Take humidity readings in this room, morning and evening. The Ventilation & Indoor Air check has a Humidity Log.');
+  if(has(f.apps,'Indoor metal furniture / fittings'))next.push('Take humidity readings in this room, morning and evening. The Breathing House has a Humidity Log.');
   if(has(f.apps,'Shared building area'))next.push('Ask the building manager or owners\' body for the latest structural or balcony inspection report.');
   if(has(f.signs,'Sliding or hinged parts sticking'))next.push('Note which doors or windows stick, especially any you would need to open in an emergency.');
   if(isHigh(f))esc_.push('A structural engineer, licensed electrician or registered gas engineer (as relevant) should look at this before it is used or loaded.');
@@ -799,11 +814,11 @@ function renderPrompts(f){
   p.warn.forEach(function(w){h+='<div class="warn"><b>Safety:</b> '+esc(w)+'</div>';});
   h+='<h4>Observation pattern</h4>';
   h+=p.ind.length?'<ul>'+p.ind.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'<p class="hint">Tick the item and what you notice. Prompts build as you go.</p>';
-  if(p.next.length)h+='<h4>Check next</h4><ul>'+p.next.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
+  if(p.next.length)h+='<h4>Next on the trail</h4><ul>'+p.next.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
   if(p.esc.length)h+='<h4>Escalation</h4><ul>'+p.esc.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
   var st=stepsFor(f);
   if(st.length)h+='<h4>'+(S.settings.mode==='buyer'?'Safe steps (for the owner)':'Safe steps now')+'</h4><ul class="steps">'+st.map(function(k){return '<li>'+stepHtml(k)+'</li>';}).join('')+'</ul>';
-  h+='<p class="hint" style="margin:0">These prompts organise evidence. They do not identify the cause. "Check next" and escalation prompts: professional practice. Safety prompts and safe steps: cited as shown.</p>';
+  h+='<p class="hint" style="margin:0">These prompts organise evidence. They do not identify the cause. "Next on the trail" and escalation prompts: professional practice. Safety prompts and safe steps: cited as shown.</p>';
   $('#promptBox').innerHTML=h;
 }
 function refreshSide(f){
@@ -855,8 +870,8 @@ function compress(file,cb){
 }
 function renderFindList(){
   var h='';
-  $('#findCount').textContent=S.findings.length+' FINDING'+(S.findings.length===1?'':'S');
-  if(!S.findings.length){h='<div class="empty">No findings yet. Tap <b>+ New finding</b>, or log one from the Coastal Sweep or Master Checks.</div>';}
+  $('#findCount').textContent=S.findings.length+' SNAG'+(S.findings.length===1?'':'S');
+  if(!S.findings.length){h='<div class="empty">No findings yet. Tap <b>+ New snag</b>, or log one from the Hiding Places or Trail Points.</div>';}
   S.findings.forEach(function(f){
     var pc=Object.keys(f.photos).length;
     h+='<div class="fcard '+(f.risk||'')+'"><div><div class="row"><span class="fid">'+f.id+'</span>'+(f.risk?'<span class="risk '+f.risk+'">'+f.risk+'</span>':'')+'<span class="hint">'+esc(f.status)+'</span></div>'+
@@ -925,13 +940,13 @@ function renderReport(){
   var hi=0,esc_=0;S.findings.forEach(function(f){if(f.risk==='High')hi++;if(f.escalate==='Structural engineer'||f.escalate==='Electrician or gas engineer'||f.escalate==='Contractor / specialist')esc_++;});
   var g34=S.metal.filter(function(m){return m.grade>=3;}).length;
   var h='<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px">'+
-    '<div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--cyan)">THE SNAG TAG &middot; BENEATH THE SURFACE</div><h2 style="margin:4px 0 0;font-size:22px">Coastal Corrosion Record</h2><div class="hint">'+mode+' check</div></div>'+
+    '<div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--cyan)">THE SNAG TAG &middot; BENEATH THE SURFACE</div><h2 style="margin:4px 0 0;font-size:22px">Salt Line &middot; Your Record</h2><div class="hint">'+mode+' check</div></div>'+
     '<div style="font-family:var(--mono);font-size:12px;text-align:right">'+esc(P.name||'Property')+'<br>'+esc(P.address||'')+'<br>Date: '+esc(P.date||'-')+'<br>By: '+esc(P.inspector||'-')+'</div></div>';
-  h+='<div class="sum-grid"><div class="kpi"><div class="k">Findings</div><div class="v">'+S.findings.length+'</div></div><div class="kpi"><div class="k">High priority</div><div class="v" style="color:var(--high)">'+hi+'</div></div><div class="kpi"><div class="k">Items grade 3-4</div><div class="v">'+g34+'</div></div><div class="kpi"><div class="k">Specialist needed</div><div class="v">'+esc_+'</div></div></div>';
+  h+='<div class="sum-grid"><div class="kpi"><div class="k">Evidence File</div><div class="v">'+S.findings.length+'</div></div><div class="kpi"><div class="k">High priority</div><div class="v" style="color:var(--high)">'+hi+'</div></div><div class="kpi"><div class="k">Items grade 3-4</div><div class="v">'+g34+'</div></div><div class="kpi"><div class="k">Specialist needed</div><div class="v">'+esc_+'</div></div></div>';
   h+='<h3 style="font-size:15px;margin:18px 0 6px">Property and exposure</h3><p style="margin:0;font-size:14px">Type: '+esc(P.ptype||'-')+' &middot; Distance to the sea: '+esc(P.dist||'-')+' &middot; Faces the sea or sea wind: '+esc(P.faces||'-')+' &middot; Building age: '+esc(P.age||'-')+(P.manager?' &middot; Building manager: '+esc(P.manager):'')+(S.settings.mode==='buyer'?' &middot; Occupied: '+esc(P.occupied||'-'):'')+'</p><p class="hint">Distance from the sea is recorded as context, not as the cause of any defect.</p>'+(P.notes?'<p style="font-size:14px">'+esc(P.notes)+'</p>':'');
   h+='<h3 style="font-size:15px;margin:18px 0 6px">Metal &amp; concrete register</h3>'+(S.metal.length?'<table class="tbl"><thead><tr><th>Item</th><th>Material</th><th>Exposure</th><th>Grade</th><th>Flags</th></tr></thead><tbody>'+S.metal.map(function(m){return '<tr><td>'+esc(m.item)+(m.loc?' - '+esc(m.loc):'')+'</td><td>'+esc(m.mat)+'</td><td>'+esc(m.exp)+'</td><td>'+esc(GRADES[m.grade])+'</td><td>'+mrFlags(m).map(function(x){return esc(x.t);}).join('; ')+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">No items recorded.</p>');
   h+='<h3 style="font-size:15px;margin:18px 0 6px">Wash &amp; check log</h3>'+(S.wash.length?'<table class="tbl"><thead><tr><th>Area</th><th>Task</th><th>Done</th><th>Next due</th><th>Status</th></tr></thead><tbody>'+S.wash.map(function(w){var st=wlStatus(w);return '<tr><td>'+esc(w.area)+'</td><td>'+esc(w.task)+'</td><td>'+fmtD(w.date)+'</td><td>'+fmtD(st.due)+'</td><td>'+esc(st.t)+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">Nothing logged.</p>');
-  h+='<h3 style="font-size:15px;margin:18px 0 6px">Findings</h3>';
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Evidence File</h3>';
   if(!S.findings.length)h+='<p class="hint">No findings recorded.</p>';
   S.findings.forEach(function(f){
     var p=buildPrompts(f),st=stepsFor(f);
@@ -942,7 +957,7 @@ function renderReport(){
       (f.link?'<dt>Linked</dt><dd>'+esc(f.link)+'</dd>':'')+
       '<dt>Escalation</dt><dd>'+esc(f.escalate||'-')+' &middot; Status: '+esc(f.status)+(f.recheck?' &middot; Re-check: '+esc(f.recheck):'')+'</dd>'+
       (p.warn.length?'<dt>Safety</dt><dd>'+p.warn.map(esc).join('<br>')+'</dd>':'')+
-      (p.next.length?'<dt>Check next</dt><dd>'+p.next.map(esc).join('<br>')+'</dd>':'')+
+      (p.next.length?'<dt>Next on the trail</dt><dd>'+p.next.map(esc).join('<br>')+'</dd>':'')+
       (st.length?'<dt>Safe steps</dt><dd>'+st.map(stepHtml).join('<br>')+'</dd>':'')+
       (f.notes?'<dt>Notes</dt><dd>'+esc(f.notes)+'</dd>':'')+'</dl>';
     var ph=[['context','Context'],['close','Close-up'],['relation','Relationship']].filter(function(x){return f.photos[x[0]];});
@@ -950,12 +965,12 @@ function renderReport(){
     h+='</div>';
   });
   var sw=SWEEP.filter(function(s){return S.sweep[s.id]&&S.sweep[s.id].status!=='unchecked';});
-  h+='<h3 style="font-size:15px;margin:18px 0 6px">Coastal Sweep</h3>';
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Hiding Places</h3>';
   h+=sw.length?'<table class="tbl"><thead><tr><th>Area</th><th>Result</th><th>Sheltered?</th><th>Note</th></tr></thead><tbody>'+sw.map(function(s){var st=S.sweep[s.id];return '<tr><td>'+esc(s.a)+'</td><td>'+esc(SW_ST.filter(function(o){return o[0]===st.status;})[0][1])+'</td><td>'+esc(st.conc||'-')+'</td><td>'+esc(st.note||'')+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">Not started.</p>';
   var nc=SWEEP.length-sw.length; if(nc>0)h+='<p class="hint">'+nc+' area(s) not checked.</p>';
   var ck=CHECKS.filter(function(c){return S.checks[c.id]&&S.checks[c.id].status!=='open';});
-  h+='<h3 style="font-size:15px;margin:18px 0 6px">Master Checks</h3>';
-  h+=ck.length?'<table class="tbl"><thead><tr><th>Check</th><th>Priority</th><th>Result</th><th>Note</th></tr></thead><tbody>'+ck.map(function(c){var st=S.checks[c.id];return '<tr><td>'+esc(c.t)+'</td><td><span class="risk '+c.p+'">'+c.p+'</span></td><td>'+esc(CK_ST.filter(function(o){return o[0]===st.status;})[0][1])+'</td><td>'+esc(st.note||'')+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">Not started.</p>';
+  h+='<h3 style="font-size:15px;margin:18px 0 6px">Trail Points</h3>';
+  h+=ck.length?'<table class="tbl"><thead><tr><th>Trail point</th><th>Priority</th><th>Result</th><th>Note</th></tr></thead><tbody>'+ck.map(function(c){var st=S.checks[c.id];return '<tr><td>'+esc(c.t)+'</td><td><span class="risk '+c.p+'">'+c.p+'</span></td><td>'+esc(CK_ST.filter(function(o){return o[0]===st.status;})[0][1])+'</td><td>'+esc(st.note||'')+'</td></tr>';}).join('')+'</tbody></table>':'<p class="hint">Not started.</p>';
   var oc=CHECKS.length-ck.length; if(oc>0)h+='<p class="hint">'+oc+' check(s) still open.</p>';
   if(S.settings.mode==='buyer'){
     h+='<h3 style="font-size:15px;margin:18px 0 6px">Questions for the seller or agent</h3><div class="no-print hint" style="margin-bottom:6px">Tick the questions you want on your printed record.</div><ul style="list-style:none;padding:0;margin:0">';
@@ -1002,7 +1017,7 @@ if(!S.property.date){S.property.date=new Date().toISOString().slice(0,10);}
 renderGuide();applySettings();renderAll();go('start');
 })();
 </script>
-<script>window.TST_SAFE={id:'g52sdvih',accent:'#2D5B9A',backup:function(){document.getElementById('exportBtn').click()},restore:function(){document.getElementById('importFile').click()}};</script>
+<script>window.TST_SAFE={id:'g52sdvih',accent:'#23324F',backup:function(){document.getElementById('exportBtn').click()},restore:function(){document.getElementById('importFile').click()}};</script>
 <!-- ===== The Snag Tag - Your emergency numbers ===== -->
 <style>
 .tst-nums{margin:8px 0 2px}
